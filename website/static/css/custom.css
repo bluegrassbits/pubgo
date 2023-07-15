@@ -1,3 +1,7 @@
 #header-logo {
   margin-right: 2em;
 }
+
+p img {
+  max-width: 100%;
+}

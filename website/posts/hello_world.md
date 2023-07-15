@@ -23,5 +23,5 @@ do an image work?
 
 ![grug](https://i.kym-cdn.com/entries/icons/original/000/025/413/oogaboogaaa.jpg "grug")
 
-if you've some how magically found your way here, feel free to leave feedback
+if you've somehow magically found your way here, feel free to leave feedback
 or a comment below.
