@@ -1,0 +1,31 @@
+{{define "entryHTML"}}
+  <!-- if title or description or author or date then display -->
+  {{ if or (.Entry.Description) (.Entry.Author) (ne (.Entry.Date.Format
+  "01/02/2006") "01/01/0001")}}
+  <div class="content-details">
+    <h2>{{ .Entry.Title }}</h2>
+    <h4>{{ .Entry.Description }}</h4>
+    <!-- If the entry has an author, display it -->
+    {{ if .Entry.Author }}
+      <div>
+        <h4>By {{ .Entry.Author }}</h4>
+      </div>
+    {{ end }}
+
+    <!-- If the entry has a date, display it -->
+    {{ if and (.Entry.Date) (ne (.Entry.Date.Format "01/02/2006") "01/01/0001")}}
+      <div class="entry-date">{{ .Entry.Date.Format "01/02/2006" }}</div>
+    {{ end }}
+  </div>
+  {{ end }}
+
+  <div class="content-body">
+    {{ if .Entry.Body }}
+      {{ .Entry.Body }}
+    {{ end }}
+
+    {{ if .Page.Comments }}
+      {{ template "commentsHTML" }}
+    {{ end }}
+  </div>
+{{end}}

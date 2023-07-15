@@ -1,0 +1,405 @@
+{{ define "styleCSS" }}
+:root {
+  --white: {{ .WhiteColor }};
+  --black: {{ .BlackColor }};
+  --main-background: {{ .MainBackgroundColor }};
+  --main-dark: {{ .MainDarkColor }};
+  --main-mid: {{ .MainMidColor }};
+  --main-light: {{ .MainLightColor }};
+  --accent: {{ .AccentColor }};
+  --accent-light: {{ .AccentLightColor }};
+  --accent-dark: {{ .AccentDarkColor }};
+  --font-family: {{ .FontFamily }};
+  --divider: {{ .DividerColor }};
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  background: var(--main-background);
+  color: var(--main-dark);
+  font-family: var(--font-family);
+}
+
+h1, h2, h3, h4 {
+    margin-bottom: 0.65em;
+    font-weight: 600;
+    line-height: 1em;
+}
+
+p {
+    margin: 0.5em 0;
+}
+
+ul li {
+    padding: 4px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  position: relative;
+}
+
+header {
+  padding: 8px;
+  background: linear-gradient(45deg, var(--main-dark), var(--main-mid));
+  color: var(--main-light);
+  display: flex;
+  align-content: center;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 1px solid var(--accent);
+  justify-content: space-around;
+  min-height: 52px;
+}
+
+header a {
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+footer {
+  height: 3em;
+  background: var(--main-mid);
+  display: flex;
+  color: var(--white);
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+nav {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav a.page {
+  font-size: 1.2em;
+  font-weight: normal;
+  line-height: 1.2em;
+  border: 1px solid transparent;
+  color: var(--accent-light);
+  padding: 8px;
+  border-radius: 4px;
+}
+
+nav a.page:hover,nav a.page.active {
+  border: 1px solid var(--accent);
+  color: var(--accent);
+}
+
+a {
+  color: var(--main-mid);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+pre {
+  background: var(--main-dark);
+  color: var(--main-light);
+  padding: 1em;
+  margin-bottom: 1em;
+  border-radius: 4px;
+}
+
+.entries-list ul {
+  list-style: none;
+}
+
+.entries-list li {
+  margin-bottom: 8px;
+}
+
+#main {
+  width: 100%;
+  min-height: 100%;
+  padding-bottom: 2em;
+  background: var(--divider);
+}
+
+.entry-item {
+  border-bottom: 1px solid #ebebeb;
+}
+
+.entry-description {
+  font-size: 0.8em;
+}
+
+#header-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: uppercase;
+}
+
+#header-logo h2 {
+  margin-bottom: 0;
+  color: var(--accent);
+}
+
+.content-container {
+  width: 100%;
+  max-width: 60rem;
+  margin: auto;
+  margin: 1em auto;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  margin: auto;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.content-body {
+  font-size: 16px;
+  padding: 3em;
+}
+
+.content-body nav ul {
+  list-style-type: none;
+}
+
+.content-body nav ul ul {
+  list-style: inside;
+  list-style-type: square;
+}
+
+.content-body nav ul ul ul {
+  list-style: inside;
+  padding-left: 2em;
+  list-style-type: disc;
+}
+
+.content-body nav ul ul ul ul {
+  list-style: inside;
+  padding-left: 2em;
+  list-style-type: disc;
+}
+
+.content-body h1, h2, h3, h4 {
+  margin-bottom: 1em;
+}
+
+.content-body p {
+  margin-bottom: 2em;
+}
+
+.content-body table {
+  text-align: left;
+  width: 100%;
+  margin-bottom: 2em;
+  border-collapse:collapse;
+  border-radius: 4px 4px 0 0;
+}
+
+.content-body table td,
+  .content-body  table th {
+  padding: 0.5em;
+}
+
+.content-body table tr {
+  border-bottom: 1px solid var(--divider);
+}
+
+.content-body table thead {
+  background: var(--main-mid);
+  color: var(--main-light);
+  border-radius: 4px 4px 0 0;
+}
+
+.content-body table thead th {
+  font-weight: bold;
+}
+
+.content-body table tfoot {
+  font-weight: bold;
+}
+
+.content-header {
+  color: var(--main-mid);
+  text-align: right;
+}
+
+.content-header p {
+  height: 1em;
+}
+
+.content-details {
+  padding: 1em;
+}
+
+.content-details h2,
+.content-details h4,
+.content-details h5  {
+  margin-bottom: 8px;
+}
+
+.entries-list {
+  color: var(--main-dark);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 1em;
+  border-radius: 4px;
+  background: var(--white);
+}
+
+.entries-list > ul > li:last-child {
+  margin-bottom: 0;
+  border: none;
+}
+
+.entries-list a {
+  color: var(--main-mid);
+}
+
+#current-content {
+  width: 100%;
+  color: var(--main-dark);
+  border-radius: 4px;
+  background: var(--white);
+  margin: 0 auto;
+}
+
+p.date {
+  text-align: right;
+  font-size: 0.8em;
+}
+
+.hero {
+margin-bottom: 1em;
+min-height: 17em;
+padding: 2em;
+background: var(--main-mid);
+color: var(--accent-light);
+display: flex;
+align-items: center;
+align-content: center;
+position: relative;
+justify-content: center;
+flex-direction: column;
+}
+
+h1.hero-content {
+font-size: 4em;
+}
+
+.hero-image {
+text-align-last: center;
+}
+
+.hero-image img {
+width: 75%;
+}
+
+.commentbox {
+margin-top: 36px;
+}
+
+.commentbox button {
+background: var(--main-mid) !important;
+}
+
+#hamburger {
+display: none;
+}
+
+@media only screen and (max-width: 770px) {
+  .content {
+    flex-direction: column;
+    margin: 0;
+  }
+
+  .content-container {
+    margin: 0;
+  }
+
+  .hero {
+    margin: 0;
+  }
+
+  .content-body {
+    padding: 1em;
+  }
+
+  table {
+    font-size: 0.75em
+  }
+
+  .entries-list {
+    max-height: 10rem;
+    overflow-y: scroll;
+  }
+
+  pre {
+    white-space: pre-wrap;
+    font-size: 0.75em;
+  }
+
+  header {
+    display: block;
+  }
+
+  #header-menu {
+    display: none;
+  }
+
+  #hamburger {
+    display: flex;
+    cursor: pointer;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  details summary::-webkit-details-marker {
+    display:none;
+  }
+
+  #hamburger span {
+    display: block;
+    height: 1px;
+    background: var(--accent);
+    transition: 0.3s;
+  }
+
+  .hamburger-wrap {
+    height: 2em;
+    width: 2em;
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    padding: 5px;
+  }
+
+  .hamburger-wrap .menu-items {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: 0;
+    width: 100%;
+    top: 53px;
+    z-index: 1;
+    background: var(--main-mid);
+    padding: 1em;
+    text-align: right;
+  }
+
+  .hamburger-wrap .menu-items a {
+    color: var(--accent);
+    margin-bottom: 1em;
+  }
+}
+{{ end }}

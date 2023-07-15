@@ -1,0 +1,59 @@
+content_dir: .
+port: 8080
+site:
+  name: My Site
+  logo: ""
+  logo_width: ""
+  logo_height: 32px
+  pages:
+    "0":
+      name: home
+      path: /
+      hide_from_nav: true
+      breadcrumb: false
+      comments: false
+      collection: false
+      hero:
+        background: "#dcdcdc"
+        content: Welcome to my site
+        sub_content: This is a simple site
+        image: https://picsum.photos/200
+        background_image: https://picsum.photos/400
+      toc: false
+    "1":
+      name: blog
+      path: /blog/
+      hide_from_nav: false
+      breadcrumb: false
+      comments: false
+      collection: true
+      hero:
+        background: ""
+        content: ""
+        sub_content: ""
+        image: ""
+        background_image: ""
+      toc: false
+  theme:
+    white_color: "#020202"
+    black_color: "#eeeeee"
+    main_background_color: "#eeeeee"
+    divider_color: "#293437"
+    main_dark_color: "#fefefe"
+    main_mid_color: "#eeeeee"
+    main_light_color: "#111111"
+    accent_color: "#020202"
+    accent_light_color: "#0f0f0f"
+    accent_dark_color: "#020202"
+    font_family: monospace
+  title: ""
+  footer_content: Powered by PubGo (https://pubgo.org) - CopyRight © 2019 My Site
+  favicon: ""
+  stylesheet: ""
+ftp_server:
+  root: .
+  user: admin
+  pass: "123456"
+  port: 2121
+  host: localhost
+  enabled: false

@@ -1,0 +1,72 @@
+content_dir:
+  "./website"
+  # base_url:
+  # "https://pubgo-test.surge.sh"
+base_url: ""
+port: 8889
+site:
+  # image paths are relative to content_dir
+  name: "PubGo"
+  favicon: "/static/icon.png"
+  stylesheet: "/static/css/custom.css"
+  title: Dynamic Content Publishing Framework in Go
+  footer_content: "PubGo © 2023"
+  logo: "/static/logo.svg"
+  logo_height: "32px"
+  pages:
+    0:
+      name: "home"
+      path: "/"
+      hide_from_nav: true
+      collection: false
+      hero:
+        image: "/static/logo.svg"
+        background_image: "/static/inspiration-geometry.png"
+        #content: "PubGo"
+        #sub_content: "publish and go..."
+        background: "#020202"
+    1:
+      name: "docs"
+      path: "/docs"
+      collection: false
+      toc: true
+      hero:
+        content: "Docs"
+        background_image: "/static/inspiration-geometry.png"
+        background: "#020202"
+    4:
+      name: "posts"
+      path: "/posts"
+      breadcrumb: true
+      collection: true
+      comments: true
+      hero:
+        content: "Readings"
+        background_image: "/static/inspiration-geometry.png"
+        background: "#020202"
+    5:
+      name: "news"
+      path: "/news"
+      collection: true
+      hero:
+        content: "News"
+        background_image: "/static/geometry.svg"
+        background: "#020202"
+  theme:
+    white_color: "#fefefe"
+    black_color: "#020202"
+    divider_color: "#eeeeee"
+    main_background_color: "#eeeeee"
+    main_dark_color: "#111111"
+    main_mid_color: "#293437"
+    main_light_color: "#e1f7fd"
+    accent_color: "#aea1ea"
+    accent_light_color: "#b2ebf9"
+    accent_dark_color: "#83dff5"
+    font_family: "-apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, sans-serif"
+
+ftp_server:
+  enabled: false
+  port: 2122
+  user: reppard
+  pass: password1234

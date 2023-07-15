@@ -1,0 +1,16 @@
+{{define "footerHTML"}}
+<footer>
+  <div>{{ .Site.FooterContent }}</div>
+
+  <p>Powered by PubGo</p>
+</footer>
+<style>
+
+footer {
+  min-height: 3em;
+  height: unset;
+  padding: 2em;
+  flex-direction: column;
+}
+</style>
+{{end}}

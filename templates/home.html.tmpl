@@ -1,0 +1,66 @@
+{{define "indexHTML"}}
+<!DOCTYPE html>
+<html>
+  {{template "headHTML" .}}
+  <body>
+    {{template "headerHTML" .}}
+
+    {{block "main" .}}
+      <div id="main">
+
+        {{block "hero" .}}
+          {{ if or .Page.Hero.Image .Page.Hero.Content .Page.Hero.SubContent }}
+            <div class="hero">
+              {{ if .Page.Hero.Image }}
+                <div class="hero-image">
+                  <img src="{{.BasePath}}{{ .Page.Hero.Image }}" />
+                </div>
+              {{ end }}
+              {{ if .Page.Hero.Content }}
+                <h1 class="hero-content">{{ .Page.Hero.Content }}</h1>
+              {{ end }}
+              {{ if .Page.Hero.SubContent }}
+                <p class="hero-subcontent">{{ .Page.Hero.SubContent }}</p>
+              {{ end }}
+            </div>
+          {{ end }}
+        {{ end }} {{/* hero */}}
+
+        <div class="content-container">
+          <div class="content">
+
+            {{ if and .Collection .Entries }}
+              {{ if .Entries }}
+                {{ if eq .Mode "serve" }}
+                  {{template "entriesHTML" .}}
+                {{ else }}
+                  {{template "entriesStaticHTML" .}}
+                {{ end }}
+              {{ end }}
+            {{end }}
+
+            <!-- Current content -->
+            <div id="current-content">
+              {{ if .Entry }}
+                {{template "entryHTML" .}}
+              {{ end }}
+            </div>
+          </div>
+        </div>
+      </div>
+    {{end}} {{/* main */}}
+
+    {{template "footerHTML" .}}
+  </body>
+  <style>
+    .hero {
+      {{ if .Page.Hero.BackgroundImage }}
+      background-image: url("{{ .Page.Hero.BackgroundImage }}");
+      {{ end }}
+      {{ if .Page.Hero.Background }}
+      background-color: {{ .Page.Hero.Background }};
+      {{ end }}
+    }
+  </style>
+</html>
+{{end}}
