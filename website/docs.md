@@ -209,8 +209,8 @@ pages:
 An important piece of page configuration is the **collection** bit. If _true_,
 then the page is expected to display multiple entries of content.
 
--   Collections pages will look for content in **<content_dir>/<page_name>/**
--   Non-Collections pages expect **<content_dir>/<page_name>.md**
+-   Collections pages will look for content in **\<content_dir\>/\<page_name\>/**
+-   Non-Collections pages expect **\<content_dir\>/\<page_name\>.md**
 
 <br/>
 
