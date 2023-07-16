@@ -15,6 +15,20 @@ import (
 	"github.com/gomarkdown/markdown"
 )
 
+var fourOhFour = `
+<h2>404: Page not found.</h2>
+<pre>
+ _________________
+< You Done Goofed >
+ -----------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+</pre>
+`
+
 // setup main router
 func setupRouter() {
 	// a handler to process the request path and map it to a page

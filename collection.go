@@ -11,20 +11,6 @@ import (
 	"github.com/gomarkdown/markdown"
 )
 
-var fourOhFour = `
-<h2>404: Page not found.</h2>
-<pre>
- _________________
-< You Done Goofed >
- -----------------
-        \   ^__^
-         \  (oo)\_______
-            (__)\       )\/\
-                ||----w |
-                ||     ||
-</pre>
-`
-
 // buildCollectionPage builds a collection page.
 func buildCollectionPage(page config.Page) {
 	log.Printf("Building collection page: %s", page.Name)
