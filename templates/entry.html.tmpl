@@ -1,4 +1,5 @@
 {{define "entryHTML"}}
+<div id="current-content">
   <!-- if title or description or author or date then display -->
   {{ if or (.Entry.Description) (.Entry.Author) (ne (.Entry.Date.Format
   "01/02/2006") "01/01/0001")}}
@@ -28,4 +29,5 @@
       {{ template "commentsHTML" }}
     {{ end }}
   </div>
+</div>
 {{end}}

@@ -40,11 +40,9 @@
             {{end }}
 
             <!-- Current content -->
-            <div id="current-content">
-              {{ if .Entry }}
+              {{ if .Entry.Body}}
                 {{template "entryHTML" .}}
               {{ end }}
-            </div>
           </div>
         </div>
       </div>

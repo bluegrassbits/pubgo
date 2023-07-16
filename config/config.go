@@ -88,7 +88,7 @@ func NewConfig() Config {
 				},
 				"1": {
 					Name:        "blog",
-					Path:        "/blog/",
+					Path:        "/blog",
 					HideFromNav: false,
 					Collection:  true,
 				},

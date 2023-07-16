@@ -3,7 +3,6 @@ package main
 import (
 	"html/template"
 	"log"
-	"net/http"
 	"os"
 
 	"pubgo/config"
@@ -36,9 +35,9 @@ func buildNonCollectionPage(page config.Page) {
 		}
 	}
 
-	renderer := newCustomizedRender(page.Toc)
+	renderer, p := newCustomizedRender(page.Toc)
 
-	entry.Body = template.HTML(markdown.ToHTML(md, nil, renderer))
+	entry.Body = template.HTML(markdown.ToHTML(md, p, renderer))
 	cont := content.Content{
 		Site:        cfg.Site,
 		Page:        page,
@@ -68,83 +67,5 @@ func buildNonCollectionPage(page config.Page) {
 	err = templates.ExecuteTemplate(wr, "indexHTML", cont)
 	if err != nil {
 		log.Println("Error executing template:", err)
-	}
-}
-
-func setupNonCollectionPageHandler(page config.Page) {
-	log.Println("Setting up handler for page:", page.Path)
-
-	pageFilename := cfg.ContentDir + "/" + page.Name + ".md"
-
-	http.HandleFunc(page.Path, func(wr http.ResponseWriter, req *http.Request) {
-		handleNonCollectionPageRequest(wr, req, page, pageFilename)
-	})
-}
-
-func handleNonCollectionPageRequest(wr http.ResponseWriter, req *http.Request, page config.Page, pageFilename string) {
-
-	if page.Path == "/" && req.URL.Path != "/" {
-		cont := content.Content{
-			Site:        cfg.Site,
-			Page:        page,
-			RequestPath: req.URL.Path,
-			BasePath:    cfg.BaseURL,
-			Mode:        cfg.Mode,
-			Title:       cfg.Site.Name + " ~ 404",
-			Entry: content.Entry{
-				Title: "404",
-				Body:  template.HTML(fourOhFour),
-			},
-		}
-
-		// set status code to 404
-		wr.WriteHeader(http.StatusNotFound)
-
-		err := templates.ExecuteTemplate(wr, "indexHTML", cont)
-		if err != nil {
-			http.Error(wr, err.Error(), http.StatusInternalServerError)
-		}
-
-		return
-	}
-
-	md, err := os.ReadFile(pageFilename)
-	entry := content.Entry{}
-
-	if err != nil {
-		http.Error(wr, "Error reading markdown file: "+err.Error(), http.StatusInternalServerError)
-		log.Println("Error reading markdown file:", err)
-		return
-	}
-
-	entry, md, _ = content.ParseEntry(md)
-
-	var title string
-	if req.URL.Path == "/" {
-		title = cfg.Site.Name + " ~ " + cfg.Site.Title
-	} else {
-		if entry.Title != "" {
-			title = cfg.Site.Name + " ~ " + entry.Title
-		} else {
-			title = cfg.Site.Name + " ~ " + page.Name
-		}
-	}
-
-	renderer := newCustomizedRender(page.Toc)
-
-	entry.Body = template.HTML(markdown.ToHTML(md, nil, renderer))
-	cont := content.Content{
-		Site:        cfg.Site,
-		Page:        page,
-		RequestPath: req.URL.Path,
-		Mode:        cfg.Mode,
-		Title:       title,
-		Collection:  page.Collection,
-		Entry:       entry,
-	}
-
-	err = templates.ExecuteTemplate(wr, "indexHTML", cont)
-	if err != nil {
-		http.Error(wr, err.Error(), http.StatusInternalServerError)
 	}
 }

@@ -14,8 +14,6 @@ import (
 
 	"pubgo/config"
 	"pubgo/content"
-
-	"github.com/fsnotify/fsnotify"
 )
 
 //go:embed templates/*.tmpl
@@ -197,7 +195,8 @@ func createEntry(page config.Page, subDir, filename string, data []byte) content
 		log.Println("Error parsing entry:", err)
 	}
 
-	entry.FileName = filename
+	// filename change .md to .html
+	entry.FileName = strings.Replace(filename, ".md", ".html", 1)
 	entry.Page = page.Name
 
 	return entry
@@ -234,59 +233,7 @@ func loadEntries() {
 	printEntries()
 }
 
-// watchContentDir watches the content directory for changes recursively
-// and reloads entries when a change is detected
-// it watches for changes recursively
-
-func watchContentDir() {
-	log.Println("Watching", cfg.ContentDir, "for changes...")
-
-	// Create a new file watcher
-	watcher, err := fsnotify.NewWatcher()
-	if err != nil {
-		log.Fatal("Error creating file watcher:", err)
-	}
-
-	// Watch content directory recursively
-	err = filepath.Walk(cfg.ContentDir, func(path string, info os.FileInfo, err error) error {
-		if info.IsDir() {
-			err = watcher.Add(path)
-			if err != nil {
-				log.Println("Error adding path to file watcher:", err)
-			}
-		}
-		return nil
-	})
-	if err != nil {
-		log.Fatal("Error walking content directory:", err)
-	}
-
-	// Watch for changes
-	for {
-		select {
-		case event, ok := <-watcher.Events:
-			if !ok {
-				log.Println("File watcher event channel closed")
-				return
-			}
-			if event.Op&fsnotify.Write == fsnotify.Write {
-				log.Println("Detected change in", event.Name)
-				loadEntries()
-			}
-		case err, ok := <-watcher.Errors:
-			if !ok {
-				log.Println("File watcher error channel closed")
-				return
-			}
-			log.Println("File watcher error:", err)
-		}
-	}
-}
-
 func main() {
-	// a go routine to check for changes in the content directory
-	// go watchContentDir()
-
 	if cfg.Mode == "build" {
 
 		// using os.Read and os.Write copy files from contentdir/static/ to outputdir/static/
@@ -323,7 +270,7 @@ func main() {
 	if cfg.Mode == "serve" {
 		serveStaticFiles()
 		serveCSSTemplate()
-		setupPageHandlers()
+		setupRouter()
 
 		// Start web server
 		log.Println("Starting web server on port", cfg.Port)
@@ -356,29 +303,5 @@ func buildPages() {
 	// Set up handlers for collection pages
 	for _, page := range collectionPages {
 		buildCollectionPage(page)
-	}
-}
-
-func setupPageHandlers() {
-	// Filter Pages with Collection == false
-	nonCollectionPages := make(config.Pages)
-	collectionPages := make(config.Pages)
-
-	for _, page := range cfg.Site.Pages {
-		if page.Collection {
-			collectionPages[page.Name] = page
-		} else {
-			nonCollectionPages[page.Name] = page
-		}
-	}
-
-	// Set up handlers for non-collection pages
-	for _, page := range nonCollectionPages {
-		setupNonCollectionPageHandler(page)
-	}
-
-	// Set up handlers for collection pages
-	for _, page := range collectionPages {
-		setupCollectionPageHandler(page)
 	}
 }

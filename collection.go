@@ -3,10 +3,7 @@ package main
 import (
 	"html/template"
 	"log"
-	"net/http"
 	"os"
-	"strings"
-	"time"
 
 	"pubgo/config"
 	"pubgo/content"
@@ -91,10 +88,6 @@ func buildEntryPages(page config.Page) {
 // createContent creates a Content struct for a collection page.
 func createContent(page config.Page, ents []content.Entry) content.Content {
 	if len(ents) > 0 {
-		entry := ents[0]
-		entryBody := loadEntryBody(page, entry) // Updated here
-		entry.Body = template.HTML(entryBody)
-
 		return content.Content{
 			Site:        cfg.Site,
 			Page:        page,
@@ -103,7 +96,6 @@ func createContent(page config.Page, ents []content.Entry) content.Content {
 			BasePath:    cfg.BaseURL,
 			Title:       cfg.Site.Name + " ~ " + page.Name,
 			Collection:  page.Collection,
-			Entry:       entry,
 			Entries:     ents,
 		}
 	}
@@ -143,13 +135,10 @@ func loadEntryBody(page config.Page, entry content.Entry) string {
 	}
 
 	_, md, _ = content.ParseEntry(md)
-	renderer := newCustomizedRender(page.Toc)
+	renderer, p := newCustomizedRender(page.Toc)
 
-	// Convert []byte to string
 	mdString := string(md)
-
-	// Render Markdown to HTML
-	html := markdown.ToHTML([]byte(mdString), nil, renderer)
+	html := markdown.ToHTML([]byte(mdString), p, renderer)
 
 	return string(html)
 }
@@ -163,74 +152,4 @@ func createOutputDirectory(page config.Page) {
 			panic(err)
 		}
 	}
-}
-
-// setupCollectionPageHandler sets up the handler for a collection page.
-func setupCollectionPageHandler(page config.Page) {
-	path := page.Path
-	log.Println("Setting up handlers for page:", path)
-	ents := entries[page.Name]
-
-	http.HandleFunc(path, func(wr http.ResponseWriter, req *http.Request) {
-		handleCollectionPageRequest(wr, req, page, path, ents)
-	})
-
-	http.HandleFunc(path+"/", func(wr http.ResponseWriter, req *http.Request) {
-		handleCollectionPageRequest(wr, req, page, path+"/", ents)
-	})
-}
-
-// handleCollectionPageRequest handles a request for a collection page.
-func handleCollectionPageRequest(wr http.ResponseWriter, req *http.Request, page config.Page, path string, ents []content.Entry) {
-	log.Println("Setting up handler for page:", page.Path)
-
-	start := time.Now()
-	logRequest(req)
-
-	if req.URL.Path == path {
-		cont := createContent(page, ents)
-		err := templates.ExecuteTemplate(wr, "indexHTML", cont)
-		if err != nil {
-			http.Error(wr, err.Error(), http.StatusInternalServerError)
-		}
-	} else {
-		entryFilename := strings.TrimPrefix(req.URL.Path, path)
-		entryFilename = strings.TrimSuffix(entryFilename, "/")
-
-		entry := findEntryByFilename(ents, entryFilename)
-		entryBody := loadEntryBody(page, entry) // Updated here
-		entry.Body = template.HTML(entryBody)
-
-		cont := content.Content{
-			Site:        cfg.Site,
-			Page:        page,
-			RequestPath: req.URL.Path,
-			BasePath:    cfg.BaseURL,
-			Mode:        cfg.Mode,
-			Title:       cfg.Site.Name + " ~ " + page.Name,
-			Collection:  page.Collection,
-			Entry:       entry,
-			Entries:     ents,
-		}
-
-		if req.Header.Get("HX-Request") == "true" {
-			cont.Title = cfg.Site.Name + " ~ " + path
-
-			err := templates.ExecuteTemplate(wr, "entryHTML", cont)
-			if err != nil {
-				http.Error(wr, err.Error(), http.StatusInternalServerError)
-				return
-			}
-		} else {
-			cont.Title = cfg.Site.Name + " - " + entry.Title
-
-			err := templates.ExecuteTemplate(wr, "indexHTML", cont)
-			if err != nil {
-				http.Error(wr, err.Error(), http.StatusInternalServerError)
-			}
-		}
-	}
-
-	end := time.Now()
-	log.Printf("Request took %v", end.Sub(start))
 }

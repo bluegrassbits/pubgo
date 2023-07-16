@@ -5,6 +5,7 @@ import (
 	"io"
 
 	mdhtml "github.com/gomarkdown/markdown/html"
+	"github.com/gomarkdown/markdown/parser"
 
 	"github.com/alecthomas/chroma"
 	"github.com/alecthomas/chroma/formatters/html"
@@ -63,16 +64,18 @@ func myRenderHook(w io.Writer, node ast.Node, entering bool) (ast.WalkStatus, bo
 	return ast.GoToNext, false
 }
 
-func newCustomizedRender(toc bool) *mdhtml.Renderer {
+func newCustomizedRender(toc bool) (*mdhtml.Renderer, *parser.Parser) {
 	var flags mdhtml.Flags
 
 	if toc {
 		flags = mdhtml.TOC
 	}
+	extensions := parser.CommonExtensions | parser.AutoHeadingIDs
+	p := parser.NewWithExtensions(extensions)
 
 	opts := mdhtml.RendererOptions{
 		Flags:          mdhtml.CommonFlags | flags,
 		RenderNodeHook: myRenderHook,
 	}
-	return mdhtml.NewRenderer(opts)
+	return mdhtml.NewRenderer(opts), p
 }
