@@ -260,9 +260,9 @@ This Section is WIP
 -   [x] add to nav should be default. setting should toggle if we dont want it
 -   [x] if collection page is configured but folder doesn't exist in content dir create it
 -   [x] if home.md doesn't exist in content dir create it with some default content
--   [ ] ~~make make home page called index globally~~
--   [ ] auto-detect new content
--   [ ] Test clean install
+-   [x] ~~make make home page called index globally~~
+-   [x] ~~auto-detect new content~~ new router will lookup entries on request
+-   [x] Test clean install
 -   [x] Create single page table of content style pages
 -   [ ] allow enable table of content on individual collection entries
 -   [ ] improve table of content presentation
