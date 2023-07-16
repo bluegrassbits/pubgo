@@ -47,6 +47,14 @@ func init() {
 		}
 	}
 
+	for _, page := range cfg.Site.Pages {
+		if page.Collection {
+			primeCollectionDirs(page)
+		} else {
+			primePageEntry(page)
+		}
+	}
+
 	// if runmode is build and output directory doesn't exist, create it
 	if cfg.Mode == "build" {
 		if _, err := os.Stat(cfg.OutputDir); os.IsNotExist(err) {
@@ -56,6 +64,17 @@ func init() {
 				panic(err)
 			}
 		}
+
+		// Load entries
+		for _, page := range cfg.Site.Pages {
+			if page.Collection {
+				loadCollectionEntries(page)
+			} else {
+				loadSingleEntry(page)
+			}
+		}
+
+		printEntries()
 	}
 
 	// Load templates
@@ -107,37 +126,12 @@ func init() {
 			}
 		}
 	}
-
-	// Load entries
-	for _, page := range cfg.Site.Pages {
-		if page.Collection {
-			loadCollectionEntries(page)
-		} else {
-			loadSingleEntry(page)
-		}
-	}
-
-	// Print loaded entries
-	printEntries()
 }
 
 func loadCollectionEntries(page config.Page) {
-	// Get list of entry markdown files
-	files, err := ioutil.ReadDir(filepath.Join(cfg.ContentDir, page.Name))
-	// If directory doesn't exist, create it
-	if os.IsNotExist(err) {
-		err = os.Mkdir(filepath.Join(cfg.ContentDir, page.Name), 0755)
-		if err != nil {
-			log.Println("Error creating page directory:", err)
-			panic(err)
-		}
-		files = []os.FileInfo{}
-	} else if err != nil {
-		log.Println("Error reading page directory:", err)
-		panic(err)
-	}
 
 	log.Println("Loading entries...")
+	files, _ := ioutil.ReadDir(filepath.Join(cfg.ContentDir, page.Name))
 
 	for _, file := range files {
 		filename := file.Name()
@@ -307,5 +301,36 @@ func buildPages() {
 	// Set up handlers for collection pages
 	for _, page := range collectionPages {
 		buildCollectionPage(page)
+	}
+}
+
+func primeCollectionDirs(page config.Page) {
+	_, err := ioutil.ReadDir(filepath.Join(cfg.ContentDir, page.Name))
+	// If directory doesn't exist, create it
+	if os.IsNotExist(err) {
+		err = os.Mkdir(filepath.Join(cfg.ContentDir, page.Name), 0755)
+		if err != nil {
+			log.Println("Error creating page directory:", err)
+			panic(err)
+		}
+	} else if err != nil {
+		log.Println("Error reading page directory:", err)
+		panic(err)
+	}
+}
+
+func primePageEntry(page config.Page) {
+
+	// Get markdown file
+	data, err := os.ReadFile(filepath.Join(cfg.ContentDir, page.Name+".md"))
+
+	// if file doesn't exist, create it with default content
+	if os.IsNotExist(err) {
+		data = []byte("# " + page.Name + "\n\n" + page.Name + " content goes here")
+		err = os.WriteFile(filepath.Join(cfg.ContentDir, page.Name+".md"), data, 0644)
+		if err != nil {
+			log.Println("Error creating entry file:", err)
+			panic(err)
+		}
 	}
 }
