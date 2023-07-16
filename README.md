@@ -45,11 +45,6 @@ By default, the PubGo server host this site locally at http://localhost:8889.
 You can customize the server configuration in the PubGo configuration file.
 See the [docs](https://pubgo.org/docs) section for details on bootstrapping a new project.
 
-### Note
-
-Note that while existing files are live-loaded upon request, the detection
-of new content is yet to be implemented in PubGo.
-
 PubGo simplifies content publishing, allowing you to focus on creating engaging
 content while providing a seamless and hassle-free publishing experience. Start
 using PubGo today to build and customize your dynamic websites with ease!
