@@ -1,64 +1,64 @@
-{{define "indexHTML"}}
+{{- define "indexHTML" -}}
 <!DOCTYPE html>
 <html>
-  {{template "headHTML" .}}
+  {{- template "headHTML" . -}}
   <body>
-    {{template "headerHTML" .}}
+    {{- template "headerHTML" . -}}
 
-    {{block "main" .}}
+    {{- block "main" . -}}
       <div id="main">
 
-        {{block "hero" .}}
-          {{ if or .Page.Hero.Image .Page.Hero.Content .Page.Hero.SubContent }}
+        {{- block "hero" . -}}
+          {{- if or .Page.Hero.Image .Page.Hero.Content .Page.Hero.SubContent -}}
             <div class="hero">
-              {{ if .Page.Hero.Image }}
+              {{- if .Page.Hero.Image -}}
                 <div class="hero-image">
-                  <img src="{{.BasePath}}{{ .Page.Hero.Image }}" />
+                  <img src="{{ .BasePath }}{{ .Page.Hero.Image }}" />
                 </div>
-              {{ end }}
-              {{ if .Page.Hero.Content }}
+              {{- end -}}
+              {{- if .Page.Hero.Content -}}
                 <h1 class="hero-content">{{ .Page.Hero.Content }}</h1>
-              {{ end }}
-              {{ if .Page.Hero.SubContent }}
+              {{- end -}}
+              {{- if .Page.Hero.SubContent -}}
                 <p class="hero-subcontent">{{ .Page.Hero.SubContent }}</p>
-              {{ end }}
+              {{- end -}}
             </div>
-          {{ end }}
-        {{ end }} {{/* hero */}}
+          {{- end -}}
+        {{- end -}} {{/* hero */}}
 
         <div class="content-container">
           <div class="content">
 
-            {{ if and .Collection .Entries }}
-              {{ if .Entries }}
-                {{ if eq .Mode "serve" }}
-                  {{template "entriesHTML" .}}
-                {{ else }}
-                  {{template "entriesStaticHTML" .}}
-                {{ end }}
-              {{ end }}
-            {{end }}
+            {{- if and .Collection .Entries -}}
+              {{- if .Entries -}}
+                {{- if eq .Mode "serve" -}}
+                  {{- template "entriesHTML" . -}}
+                {{- else -}}
+                  {{- template "entriesStaticHTML" . -}}
+                {{- end -}}
+              {{- end -}}
+            {{- end -}}
 
             <!-- Current content -->
-            {{ if .Entry.Body}}
-              {{template "entryHTML" .}}
-            {{ end }}
+              {{- if .Entry.Body -}}
+                {{- template "entryHTML" . -}}
+              {{- end -}}
           </div>
         </div>
       </div>
-    {{end}} {{/* main */}}
+    {{- end -}} {{/* main */}}
 
-    {{template "footerHTML" .}}
+    {{- template "footerHTML" . -}}
   </body>
   <style>
     .hero {
-      {{ if .Page.Hero.BackgroundImage }}
+      {{- if .Page.Hero.BackgroundImage -}}
       background-image: url("{{ .Page.Hero.BackgroundImage }}");
-      {{ end }}
-      {{ if .Page.Hero.Background }}
+      {{- end -}}
+      {{- if .Page.Hero.Background -}}
       background-color: {{ .Page.Hero.Background }};
-      {{ end }}
+      {{- end -}}
     }
   </style>
 </html>
-{{end}}
+{{- end -}}

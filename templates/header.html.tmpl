@@ -1,34 +1,32 @@
-{{define "headerHTML"}}
+{{- define "headerHTML" -}}
 <header>
   <nav>
     <div id="header-logo">
       <a href="{{.BasePath}}/">
-        {{ if .Site.Logo }}
+        {{- if .Site.Logo -}}
         <img
           width="{{ .Site.LogoWidth }}"
           height="{{ .Site.LogoHeight }}"
           src="{{.BasePath}}{{ .Site.Logo }}"
           alt="{{ .Site.Name }}"
         />
-        {{ else }}
+        {{- else -}}
         <h2>{{ .Site.Name }}</h2>
-        {{ end }}</a
-      >
+        {{- end -}}
+      </a>
     </div>
-
-    {{template "menu" .}}
-
+    {{- template "menu" . -}}
     <div id="header-menu">
-      {{ range .Site.Pages }}
-        {{ if not .HideFromNav }}
-          {{ if eq $.RequestPath .Path }}
+      {{- range .Site.Pages -}}
+        {{- if not .HideFromNav -}}
+          {{- if eq $.RequestPath .Path -}}
             <a class="page active" href="{{$.BasePath}}{{ .Path }}">{{ .Name }}</a>
-          {{ else }}
+          {{- else -}}
             <a class="page" href="{{$.BasePath}}{{ .Path }}">{{ .Name }}</a>
-          {{ end }}
-        {{ end }}
-      {{ end }}
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
     </div>
   </nav>
 </header>
-{{end}}
+{{- end -}}

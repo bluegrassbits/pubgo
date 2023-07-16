@@ -1,4 +1,4 @@
-{{ define "menu" }}
+{{- define "menu" -}}
 <details class="hamburger-wrap">
   <summary id="hamburger">
     <span></span>
@@ -7,11 +7,11 @@
   </summary>
 
   <div class="menu-items">
-    {{ range .Site.Pages }}
-      {{ if not .HideFromNav }}
+    {{- range .Site.Pages -}}
+      {{- if not .HideFromNav -}}
         <a href="{{$.BasePath}}{{ .Path }}" class="menu-item">{{ .Name }}</a>
-      {{ end }}
-    {{ end }}
+      {{- end -}}
+    {{- end -}}
   </div>
 </details>
-{{ end }}
+{{- end -}}
