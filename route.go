@@ -253,7 +253,6 @@ func renderEntryPage(w http.ResponseWriter, r *http.Request, filePath string) {
 
 // renderEntriesPage renders an entries page (Markdown or HTML) to the response writer
 func renderEntriesPage(w http.ResponseWriter, r *http.Request, filePath string) {
-	// var entries []content.Entry
 	pages := cfg.Site.Pages
 
 	var page config.Page
@@ -264,7 +263,7 @@ func renderEntriesPage(w http.ResponseWriter, r *http.Request, filePath string) 
 	}
 
 	files, _ := ioutil.ReadDir(filePath)
-	var entries []content.Entry
+	var ents []content.Entry
 	for _, f := range files {
 		log.Printf("File: %s/%s\n", filePath, f.Name())
 		filename := f.Name()
@@ -278,11 +277,11 @@ func renderEntriesPage(w http.ResponseWriter, r *http.Request, filePath string) 
 				return
 			}
 			entry := createEntry(page, page.Name, filename, data)
-			entries = append(entries, entry)
+			ents = append(ents, entry)
 		}
 	}
 
-	cont := createContent(page, entries)
+	cont := createContent(page, ents)
 	err := templates.ExecuteTemplate(w, "indexHTML", cont)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)

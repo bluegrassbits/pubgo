@@ -53,8 +53,10 @@ func buildEntryPages(page config.Page) {
 	log.Printf("Building entry pages for collection: %s", page.Name)
 
 	ents := entries[page.Name]
+	log.Printf("Entries: %+v", ents)
 
 	for _, entry := range ents {
+
 		entryBody := loadEntryBody(page, entry) // Updated here
 		entry.Body = template.HTML(entryBody)
 
@@ -67,7 +69,6 @@ func buildEntryPages(page config.Page) {
 			Title:       cfg.Site.Name + " ~ " + page.Name,
 			Collection:  page.Collection,
 			Entry:       entry,
-			Entries:     ents,
 		}
 
 		createOutputDirectory(page)

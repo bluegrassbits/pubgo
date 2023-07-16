@@ -195,8 +195,12 @@ func createEntry(page config.Page, subDir, filename string, data []byte) content
 		log.Println("Error parsing entry:", err)
 	}
 
-	// filename change .md to .html
-	entry.FileName = strings.Replace(filename, ".md", ".html", 1)
+	if cfg.Mode == "serve" {
+		entry.FileName = strings.Replace(filename, ".md", ".html", 1)
+	} else {
+		entry.FileName = filename
+	}
+
 	entry.Page = page.Name
 
 	return entry
