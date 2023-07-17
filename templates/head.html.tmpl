@@ -1,7 +1,6 @@
 {{- define "headHTML" -}}
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  {{- template "headMeta" . -}}
   {{- if .Site.Favicon -}}
     <link rel="icon" href="{{.BasePath}}{{ .Site.Favicon }}" />
   {{- end -}}

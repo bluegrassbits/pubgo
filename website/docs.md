@@ -262,4 +262,8 @@ This Section is WIP
 -   [x] move example to website, update config. create examples dir with content
 -   [x] setup 404 page
 -   [ ] work on image based content publishing and presentation
--   [ ] meta/seo/robot/sitemap stuff
+-   [x] meta/seo/robot/sitemap stuff(added headMeta template with example of override. will setup better configuration options in the future.
+-   [ ] improve default site theme
+-   [ ] debug comments not showing for posts loaded dynamically with htmx
+-   [ ] improve server logging
+-   [ ] explore building flatfile commenting into pubgo

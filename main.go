@@ -277,7 +277,6 @@ func main() {
 			log.Fatal("Web server error:", err)
 		}
 	}
-
 }
 
 // buildPages builds the static pages
@@ -320,7 +319,6 @@ func primeCollectionDirs(page config.Page) {
 }
 
 func primePageEntry(page config.Page) {
-
 	// Get markdown file
 	data, err := os.ReadFile(filepath.Join(cfg.ContentDir, page.Name+".md"))
 
