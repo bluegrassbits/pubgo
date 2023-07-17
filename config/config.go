@@ -61,7 +61,7 @@ func NewConfig() Config {
 		Port:    8080,
 		Site: Site{
 			Name:          "My Site",
-			FooterContent: "Powered by PubGo (https://pubgo.org) - " + "CopyRight © 2019 My Site",
+			FooterContent: "CopyRight © 2019 My Site",
 			LogoHeight:    "32px",
 			Pages: Pages{
 				"0": {
@@ -70,11 +70,9 @@ func NewConfig() Config {
 					HideFromNav: true,
 					Collection:  false,
 					Hero: Hero{
-						Background:      "#dcdcdc",
-						Content:         "Welcome to my site",
-						SubContent:      "This is a simple site",
-						Image:           "https://picsum.photos/200",
-						BackgroundImage: "https://picsum.photos/400",
+						Background: "black",
+						Content:    "Welcome to my site",
+						SubContent: "This is a simple site",
 					},
 				},
 				"1": {
