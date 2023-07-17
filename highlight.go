@@ -1,8 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"io"
+	"log"
 
 	mdhtml "github.com/gomarkdown/markdown/html"
 	"github.com/gomarkdown/markdown/parser"
@@ -23,12 +23,12 @@ var (
 func htmlHighlight(w io.Writer, source, lang, defaultLang string) error {
 	htmlFormatter = html.New(html.Standalone(true), html.TabWidth(2))
 	if htmlFormatter == nil {
-		panic("couldn't create html formatter")
+		log.Println("couldn't create html formatter")
 	}
 	styleName := "dracula"
 	highlightStyle = styles.Get(styleName)
 	if highlightStyle == nil {
-		panic(fmt.Sprintf("didn't find style '%s'", styleName))
+		log.Printf("didn't find style '%s'", styleName)
 	}
 	if lang == "" {
 		lang = defaultLang

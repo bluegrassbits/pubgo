@@ -172,6 +172,7 @@ func loadSingleEntry(page config.Page) {
 func createEntry(page config.Page, subDir, filename string, data []byte) content.Entry {
 
 	var filePath string
+
 	if subDir != "" {
 		filePath = filepath.Join(cfg.ContentDir, page.Name, filename)
 	} else {
@@ -181,7 +182,6 @@ func createEntry(page config.Page, subDir, filename string, data []byte) content
 	data, err := os.ReadFile(filePath)
 	if err != nil {
 		log.Println("Error reading entry file:", err)
-		panic(err)
 	}
 
 	entry, _, err := content.ParseEntry(data)

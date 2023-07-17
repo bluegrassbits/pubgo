@@ -271,7 +271,7 @@ func renderEntriesPage(w http.ResponseWriter, r *http.Request, filePath string) 
 
 	var page config.Page
 	for _, p := range pages {
-		if p.Path == r.URL.Path {
+		if p.Path == r.URL.Path || p.Path+"/" == r.URL.Path {
 			page = p
 		}
 	}
