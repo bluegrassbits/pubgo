@@ -16,12 +16,15 @@ import (
 type Entry struct {
 	FileName string
 	Body     template.HTML
+	Page     string `yaml:"page"`
 
 	Title       string    `yaml:"title"`
-	Description string    `yaml:"description"`
 	Date        time.Time `yaml:"date"`
 	Author      string    `yaml:"author"`
-	Page        string    `yaml:"page"`
+	Description string    `yaml:"description"`
+
+	IncludeToc   bool `yaml:"include_toc"`
+	ShowComments bool `yaml:"show_comments"`
 }
 
 func (e Entry) StaticFileName() string {

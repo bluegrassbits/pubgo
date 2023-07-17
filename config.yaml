@@ -29,7 +29,6 @@ site:
       name: "docs"
       path: "/docs"
       collection: false
-      toc: true
       hero:
         content: "Docs"
         background_image: "/static/inspiration-geometry.png"
@@ -37,9 +36,7 @@ site:
     4:
       name: "posts"
       path: "/posts"
-      breadcrumb: true
       collection: true
-      comments: true
       hero:
         content: "Readings"
         background_image: "/static/inspiration-geometry.png"
@@ -64,9 +61,3 @@ site:
     accent_light_color: "#b2ebf9"
     accent_dark_color: "#83dff5"
     font_family: "-apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, sans-serif"
-
-ftp_server:
-  enabled: false
-  port: 2122
-  user: reppard
-  pass: password1234

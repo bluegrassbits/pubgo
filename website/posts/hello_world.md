@@ -1,6 +1,7 @@
 ---
 title: "Hello World!"
 date: 2023-07-14
+show_comments: true
 ---
 
 obligitory first post for demonstration purposes. early days for this project

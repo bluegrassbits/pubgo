@@ -1,5 +1,6 @@
 ---
 title: PubGo Documentation
+include_toc: true
 ---
 
 <br/>
@@ -105,8 +106,6 @@ site:
             name: home
             path: /
             hide_from_nav: true
-            breadcrumb: false
-            comments: false
             collection: false
             hero:
                 background: "#dcdcdc"
@@ -114,13 +113,10 @@ site:
                 sub_content: This is a simple site
                 image: https://picsum.photos/200
                 background_image: https://picsum.photos/400
-            toc: false
         "1":
             name: blog
-            path: /blog/
+            path: /blog
             hide_from_nav: false
-            breadcrumb: false
-            comments: false
             collection: true
             hero:
                 background: ""
@@ -128,7 +124,6 @@ site:
                 sub_content: ""
                 image: ""
                 background_image: ""
-            toc: false
     theme:
         white_color: "#020202"
         black_color: "#eeeeee"
@@ -192,10 +187,7 @@ pages:
     name: home
     path: /
     hide_from_nav: true
-    breadcrumb: false
-    comments: false
     collection: false
-    toc: false
     hero:
         background: ""
         content: ""
@@ -216,16 +208,13 @@ then the page is expected to display multiple entries of content.
 
 #### Other page options
 
-| Option            | Type   | Description                                                                                                         |
-| ----------------- | ------ | ------------------------------------------------------------------------------------------------------------------- |
-| **name**          | string | the page name. for not "/" routes this is used for the page \<title\>                                               |
-| **path**          | string | this is used in route handling configuration. for collections                                                       |
-| **hide_from_nav** | bool   | whether or not to hide page from navbar                                                                             |
-| **breadcrumb**    | bool   | _wip_                                                                                                               |
-| **comments**      | bool   | enable commenting via [rantbrain](http://rantbrain.com), _wip_, user specified commenting specification coming soon |
-| **collection**    | bool   | whether or not this page contains multiple entries                                                                  |
-| **toc**           | bool   | whether orn ot to generate a Table of Content                                                                       |
-| **hero**          | object | page hero configuration, see example above for options                                                              |
+| Option            | Type   | Description                                                           |
+| ----------------- | ------ | --------------------------------------------------------------------- |
+| **name**          | string | the page name. for not "/" routes this is used for the page \<title\> |
+| **path**          | string | this is used in route handling configuration. for collections         |
+| **hide_from_nav** | bool   | whether or not to hide page from navbar                               |
+| **collection**    | bool   | whether or not this page contains multiple entries                    |
+| **hero**          | object | page hero configuration, see example above for options                |
 
 <br/>
 ## Usage Guide
@@ -264,7 +253,7 @@ This Section is WIP
 -   [x] ~~auto-detect new content~~ new router will lookup entries on request
 -   [x] Test clean install
 -   [x] Create single page table of content style pages
--   [ ] allow enable table of content on individual collection entries
+-   [x] allow enable table of content on individual collection entries
 -   [ ] improve table of content presentation
 -   [ ] evaluate duplication between markdown parser and Page type, refactor
 -   [ ] entries sorting and listing options, possibly pagination

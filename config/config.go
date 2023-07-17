@@ -46,11 +46,8 @@ type Page struct {
 	Name        string `yaml:"name"`
 	Path        string `yaml:"path"`
 	HideFromNav bool   `yaml:"hide_from_nav"`
-	Breadcrumb  bool   `yaml:"breadcrumb"`
-	Comments    bool   `yaml:"comments"`
 	Collection  bool   `yaml:"collection"`
 	Hero        Hero   `yaml:"hero"`
-	Toc         bool   `yaml:"toc"`
 }
 
 type Pages map[string]Page

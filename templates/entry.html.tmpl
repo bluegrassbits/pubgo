@@ -21,11 +21,12 @@
   {{- end -}}
 
   <div class="content-body">
+
     {{- if .Entry.Body -}}
       {{- .Entry.Body -}}
     {{- end -}}
 
-    {{- if .Page.Comments -}}
+    {{- if .Entry.ShowComments -}}
       {{- template "commentsHTML" -}}
     {{- end -}}
   </div>
