@@ -4,14 +4,14 @@
     {{- range .Entries -}}
       <li class="entry-item">
         <div class="entry-data">
-          <p>
+          <h2 class="title">
             <a
               hx-push-url="true"
               hx-target=".content"
               hx-get="/{{$.BasePath}}{{.Page}}/{{.FileName}}"
               >{{.Title}}
             </a>
-          </p>
+          </h2>
           {{- if .Description -}}
             <div class="entry-description">{{.Description}}</div>
           {{- end -}}

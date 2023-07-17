@@ -1,16 +1,10 @@
 {{- define "styleCSS" -}}
 :root {
-  --white: {{ .WhiteColor }};
-  --black: {{ .BlackColor }};
-  --main-background: {{ .MainBackgroundColor }};
-  --main-dark: {{ .MainDarkColor }};
-  --main-mid: {{ .MainMidColor }};
-  --main-light: {{ .MainLightColor }};
-  --accent: {{ .AccentColor }};
-  --accent-light: {{ .AccentLightColor }};
-  --accent-dark: {{ .AccentDarkColor }};
+  --background-color: {{ .BackgroundColor }};
+  --text-color: {{ .TextColor }};
+  --main-color: {{ .MainColor }};
+  --accent-color: {{ .AccentColor }};
   --font-family: {{ .FontFamily }};
-  --divider: {{ .DividerColor }};
 }
 
 * {
@@ -21,8 +15,8 @@
 
 html {
   height: 100%;
-  background: var(--main-background);
-  color: var(--main-dark);
+  background: var(--background-color);
+  color: var(--text-color);
   font-family: var(--font-family);
 }
 
@@ -44,33 +38,26 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
+  background: var(--background-color) !important;
+  color: var(--text-color) !important;
   position: relative;
 }
 
 header {
-  padding: 8px;
-  background: linear-gradient(45deg, var(--main-dark), var(--main-mid));
-  color: var(--main-light);
-  display: flex;
-  align-content: center;
-  flex-direction: row;
-  align-items: center;
-  border-bottom: 1px solid var(--accent);
-  justify-content: space-around;
-  min-height: 52px;
+  padding: 16px;
+  border-bottom: 1px solid var(--accent-color);
 }
 
 header a {
   font-weight: bold;
+  color: var(--text-color);
   cursor: pointer;
   text-decoration: none;
 }
 
 footer {
   height: 3em;
-  background: var(--main-mid);
   display: flex;
-  color: var(--white);
   justify-content: center;
   align-content: center;
   align-items: center;
@@ -88,25 +75,22 @@ nav a.page {
   font-weight: normal;
   line-height: 1.2em;
   border: 1px solid transparent;
-  color: var(--accent-light);
   padding: 8px;
-  border-radius: 4px;
 }
 
 nav a.page:hover,nav a.page.active {
-  border: 1px solid var(--accent);
-  color: var(--accent);
+  border-bottom: 1px solid var(--text-color);
 }
 
 a {
-  color: var(--main-mid);
+  color: var(--accent-color);
   font-weight: bold;
   cursor: pointer;
 }
 
 pre {
-  background: var(--main-dark);
-  color: var(--main-light);
+  background: var(--text-color);
+  color: var(--background-color);
   padding: 1em;
   margin-bottom: 1em;
   border-radius: 4px;
@@ -117,40 +101,37 @@ pre {
 }
 
 .entries-list li {
-  margin-bottom: 8px;
+  margin-bottom: 4em;
 }
 
 #main {
   width: 100%;
   min-height: 100%;
   padding-bottom: 2em;
-  background: var(--divider);
 }
 
-.entry-item {
-  border-bottom: 1px solid #ebebeb;
+.entry-data .title {
+  border-bottom: 2px solid var(--accent-color);
 }
 
 .entry-description {
-  font-size: 0.8em;
+  padding: 1em;
 }
 
 #header-logo {
   display: flex;
   align-items: center;
   gap: 8px;
-  text-transform: uppercase;
 }
 
 #header-logo h2 {
   margin-bottom: 0;
-  color: var(--accent);
+  color: var(--accent-color);
 }
 
 .content-container {
   width: 100%;
   max-width: 60rem;
-  margin: auto;
   margin: 1em auto;
 }
 
@@ -211,12 +192,10 @@ pre {
 }
 
 .content-body table tr {
-  border-bottom: 1px solid var(--divider);
+  border-bottom: 1px solid var(--accent-color);
 }
 
 .content-body table thead {
-  background: var(--main-mid);
-  color: var(--main-light);
   border-radius: 4px 4px 0 0;
 }
 
@@ -229,7 +208,6 @@ pre {
 }
 
 .content-header {
-  color: var(--main-mid);
   text-align: right;
 }
 
@@ -248,13 +226,11 @@ pre {
 }
 
 .entries-list {
-  color: var(--main-dark);
   display: flex;
   flex-direction: column;
   gap: 8px;
   padding: 1em;
   border-radius: 4px;
-  background: var(--white);
 }
 
 .entries-list > ul > li:last-child {
@@ -263,14 +239,12 @@ pre {
 }
 
 .entries-list a {
-  color: var(--main-mid);
+  color: var(--accent-color);
 }
 
 #current-content {
   width: 100%;
-  color: var(--main-dark);
   border-radius: 4px;
-  background: var(--white);
   margin: 0 auto;
 }
 
@@ -280,17 +254,17 @@ p.date {
 }
 
 .hero {
-margin-bottom: 1em;
-min-height: 17em;
-padding: 2em;
-background: var(--main-mid);
-color: var(--accent-light);
-display: flex;
-align-items: center;
-align-content: center;
-position: relative;
-justify-content: center;
-flex-direction: column;
+  margin-bottom: 1em;
+  min-height: 17em;
+  padding: 2em;
+  background: var(--text-color);
+  color: var(--background-color);
+  display: flex;
+  align-items: center;
+  align-content: center;
+  position: relative;
+  justify-content: center;
+  flex-direction: column;
 }
 
 h1.hero-content {
@@ -310,7 +284,8 @@ margin-top: 36px;
 }
 
 .commentbox button {
-background: var(--main-mid) !important;
+background: var(--main-color) !important;
+color: var(--text-color) !important;
 }
 
 #hamburger {
@@ -372,7 +347,7 @@ display: none;
   #hamburger span {
     display: block;
     height: 1px;
-    background: var(--accent);
+    background: var(--accent-color);
     transition: 0.3s;
   }
 
@@ -392,13 +367,14 @@ display: none;
     width: 100%;
     top: 53px;
     z-index: 1;
-    background: var(--main-mid);
+    background: var(--background-color);
     padding: 1em;
     text-align: right;
   }
 
   .hamburger-wrap .menu-items a {
-    color: var(--accent);
+    color: var(--text-color);
+    font-weight: normal;
     margin-bottom: 1em;
   }
 }

@@ -125,16 +125,10 @@ site:
                 image: ""
                 background_image: ""
     theme:
-        white_color: "#020202"
-        black_color: "#eeeeee"
-        main_background_color: "#eeeeee"
-        divider_color: "#293437"
-        main_dark_color: "#fefefe"
-        main_mid_color: "#eeeeee"
-        main_light_color: "#111111"
+        background_color: "#eeeeee"
+        text_color: "#020202"
+        main_color: "#020202"
         accent_color: "#020202"
-        accent_light_color: "#0f0f0f"
-        accent_dark_color: "#020202"
         font_family: monospace
     title: ""
     footer_content: Powered by PubGo (https://pubgo.org) - CopyRight © 2019 My Site

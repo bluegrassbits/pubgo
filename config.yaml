@@ -10,9 +10,10 @@ site:
   favicon: "/static/icon.png"
   stylesheet: "/static/css/custom.css"
   title: Dynamic Content Publishing Framework in Go
-  footer_content: "PubGo © 2023"
-  logo: "/static/logo.svg"
-  logo_height: "32px"
+  footer_content:
+    "PubGo © 2023"
+    # logo: "/static/logo.svg"
+    # logo_height: "32px"
   pages:
     0:
       name: "home"
@@ -50,14 +51,8 @@ site:
         background_image: "/static/geometry.svg"
         background: "#020202"
   theme:
-    white_color: "#fefefe"
-    black_color: "#020202"
-    divider_color: "#eeeeee"
-    main_background_color: "#eeeeee"
-    main_dark_color: "#111111"
-    main_mid_color: "#293437"
-    main_light_color: "#e1f7fd"
-    accent_color: "#aea1ea"
-    accent_light_color: "#b2ebf9"
-    accent_dark_color: "#83dff5"
+    background_color: "#eeeeee"
+    text_color: "#020202"
+    main_color: "#aea1ea"
+    accent_color: "#626262"
     font_family: "-apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, sans-serif"

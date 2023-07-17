@@ -8,17 +8,11 @@ import (
 )
 
 type Theme struct {
-	WhiteColor          string `yaml:"white_color"`
-	BlackColor          string `yaml:"black_color"`
-	MainBackgroundColor string `yaml:"main_background_color"`
-	DividerColor        string `yaml:"divider_color"`
-	MainDarkColor       string `yaml:"main_dark_color"`
-	MainMidColor        string `yaml:"main_mid_color"`
-	MainLightColor      string `yaml:"main_light_color"`
-	AccentColor         string `yaml:"accent_color"`
-	AccentLightColor    string `yaml:"accent_light_color"`
-	AccentDarkColor     string `yaml:"accent_dark_color"`
-	FontFamily          string `yaml:"font_family"`
+	BackgroundColor string `yaml:"background_color"`
+	TextColor       string `yaml:"text_color"`
+	MainColor       string `yaml:"main_color"`
+	AccentColor     string `yaml:"accent_color"`
+	FontFamily      string `yaml:"font_family"`
 }
 
 type Site struct {
@@ -91,17 +85,11 @@ func NewConfig() Config {
 				},
 			},
 			Theme: Theme{
-				WhiteColor:          "#020202",
-				MainBackgroundColor: "#eeeeee",
-				BlackColor:          "#eeeeee",
-				DividerColor:        "#293437",
-				MainDarkColor:       "#fefefe",
-				MainMidColor:        "#eeeeee",
-				MainLightColor:      "#111111",
-				AccentColor:         "#020202",
-				AccentLightColor:    "#0f0f0f",
-				AccentDarkColor:     "#020202",
-				FontFamily:          "monospace",
+				BackgroundColor: "#eeeeee",
+				TextColor:       "#020202",
+				MainColor:       "#020202",
+				AccentColor:     "#020202",
+				FontFamily:      "monospace",
 			},
 		},
 	}
