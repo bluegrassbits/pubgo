@@ -21,7 +21,7 @@ var (
 
 // based on https://github.com/alecthomas/chroma/blob/master/quick/quick.go
 func htmlHighlight(w io.Writer, source, lang, defaultLang string) error {
-	htmlFormatter = html.New(html.Standalone(true), html.TabWidth(2))
+	htmlFormatter = html.New(html.Standalone(false), html.TabWidth(2))
 	if htmlFormatter == nil {
 		log.Println("couldn't create html formatter")
 	}
