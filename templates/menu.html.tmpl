@@ -6,12 +6,12 @@
     <span></span>
   </summary>
 
-  <div class="menu-items">
+  <nav class="menu-items">
     {{- range .Site.Pages -}}
       {{- if not .HideFromNav -}}
         <a href="{{$.BasePath}}{{ .Path }}" class="menu-item">{{ .Name }}</a>
       {{- end -}}
     {{- end -}}
-  </div>
+  </nav>
 </details>
 {{- end -}}

@@ -3,7 +3,7 @@
   <ul>
     {{- range .Entries -}}
       <li class="entry-item">
-        <div class="entry-data">
+        <article>
           <h2 hx-boost="true" class="title">
             <a
               hx-push-url="true"
@@ -14,13 +14,14 @@
             </a>
           </h2>
           {{- if .Description -}}
-            <div class="entry-description">{{.Description}}</div>
+            <p>{{.Description}}</p>
           {{- end -}}
           {{- if and .Date (ne (.Date.Format "01/02/2006") "01/01/0001") -}}
             <p class="date">{{.Date.Format "01/02/2006"}}</p>
           {{- end -}}
-        </div>
+        </article>
       </li>
+      <hr>
     {{- end -}}
   </ul>
 </div>

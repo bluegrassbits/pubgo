@@ -15,8 +15,6 @@
 }
 
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 
@@ -27,18 +25,8 @@ html {
   font-family: var(--font-family);
 }
 
-h1, h2, h3, h4 {
-    margin-bottom: 0.65em;
-    font-weight: 600;
-    line-height: 1em;
-}
-
-p {
-    margin: 0.5em 0;
-}
-
 p img {
-  max-width: 100%;
+  width: 100%;
 }
 
 ul li {
@@ -57,6 +45,10 @@ body {
 header {
   padding: 16px;
   border-bottom: 1px solid var(--accent-color);
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
 }
 
 header a {
@@ -107,9 +99,8 @@ a {
 pre {
   background: var(--text-color);
   color: var(--background-color);
-  padding: 1em;
-  margin-bottom: 1em;
   border-radius: 4px;
+  padding: 1em;
 }
 
 .entries-list ul {
@@ -117,20 +108,10 @@ pre {
 }
 
 .entries-list li {
-  margin-bottom: 4em;
 }
 
-#main {
-  width: 100%;
+main {
   min-height: 100%;
-  padding-bottom: 2em;
-}
-
-.entry-data .title {
-}
-
-.entry-description {
-  padding: 1em 0;
 }
 
 #header-logo {
@@ -140,7 +121,7 @@ pre {
 }
 
 #header-logo h2 {
-  margin-bottom: 0;
+  margin: 0;
   color: var(--accent-color);
 }
 
@@ -189,13 +170,11 @@ pre {
 }
 
 .content-body p {
-  margin-bottom: 2em;
 }
 
 .content-body table {
   text-align: left;
   width: 100%;
-  margin-bottom: 2em;
   border-collapse:collapse;
   border-radius: 4px 4px 0 0;
 }
@@ -233,12 +212,6 @@ pre {
   padding: 1em;
 }
 
-.content-details h2,
-.content-details h4,
-.content-details h5  {
-  margin-bottom: 8px;
-}
-
 .entries-list {
   display: flex;
   flex-direction: column;
@@ -248,7 +221,6 @@ pre {
 }
 
 .entries-list > ul > li:last-child {
-  margin-bottom: 0;
   border: none;
 }
 
@@ -270,8 +242,6 @@ p.date {
   margin-bottom: 1em;
   min-height: 17em;
   padding: 2em;
-  background: var(--text-color);
-  color: var(--background-color);
   display: flex;
   align-items: center;
   align-content: center;
@@ -336,10 +306,6 @@ display: none;
     font-size: 0.75em;
   }
 
-  header {
-    display: block;
-  }
-
   #header-menu {
     display: none;
   }
@@ -377,17 +343,16 @@ display: none;
     position: absolute;
     right: 0;
     width: 100%;
-    top: 53px;
+    top: 4em;
     z-index: 1;
-    background: var(--background-color);
+    background: var(--main-color);
     padding: 1em;
     text-align: right;
   }
 
   .hamburger-wrap .menu-items a {
-    color: var(--text-color);
+    color: var(--background-color);
     font-weight: normal;
-    margin-bottom: 1em;
   }
 }
 

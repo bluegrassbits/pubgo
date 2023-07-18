@@ -2,6 +2,9 @@
   filter: invert(100%);
 }
 
+.hero {
+  color: var(--background-color);
+}
 .hero-image {
   filter: invert(1);
 }

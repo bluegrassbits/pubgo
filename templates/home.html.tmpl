@@ -4,10 +4,8 @@
   {{- template "headHTML" . -}}
   <body>
     {{- template "headerHTML" . -}}
-
     {{- block "main" . -}}
-      <div id="main">
-
+      <main>
         {{- block "hero" . -}}
           {{- if or .Page.Hero.Image .Page.Hero.Content .Page.Hero.SubContent -}}
             <div class="hero">
@@ -41,7 +39,7 @@
               {{- end -}}
           </div>
         </div>
-      </div>
+      </main>
     {{- end -}} {{/* main */}}
 
     {{- template "footerHTML" . -}}
