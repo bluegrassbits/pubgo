@@ -324,7 +324,7 @@ func primePageEntry(page config.Page) {
 
 	// if file doesn't exist, create it with default content
 	if os.IsNotExist(err) {
-		data = []byte("# " + page.Name + "\n\n" + page.Name + " content goes here")
+		data = []byte("### " + page.Name + ".md\n\n" + page.Name + " content goes here. edit this file to change the page content.")
 		err = os.WriteFile(filepath.Join(cfg.ContentDir, page.Name+".md"), data, 0644)
 		if err != nil {
 			log.Println("Error creating entry file:", err)

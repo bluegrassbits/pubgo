@@ -71,7 +71,6 @@ func NewConfig() Config {
 					HideFromNav: true,
 					Collection:  false,
 					Hero: Hero{
-						Background: "black",
 						Content:    "Welcome to my site",
 						SubContent: "This is a simple site",
 					},
