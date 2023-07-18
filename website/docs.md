@@ -237,6 +237,14 @@ This Section is WIP
 
 ## Todo
 
+-   [ ] debug comments not showing for posts loaded dynamically with htmx
+-   [ ] improve server logging
+-   [ ] explore building flatfile commenting into pubgo
+-   [ ] improve table of content presentation
+-   [ ] evaluate duplication between markdown parser and Page type, refactor
+-   [ ] entries sorting and listing options, possibly pagination
+-   [ ] work on image based content publishing and presentation
+-   [x] cleanup default site theme
 -   [x] figure out how to overwrite templates with user defined templates
 -   [x] intial intro and docs pages
 -   [x] change default header text when no img present
