@@ -4,39 +4,15 @@
     {{- range .Entries -}}
       <li class="entry-item">
         <div class="entry-data">
-          <h2 class="title">
+          <h2 hx-boost="true" class="title">
             <a
               hx-push-url="true"
               hx-target=".content"
-              hx-get="/{{$.BasePath}}{{.Page}}/{{.FileName}}"
+              href="/{{$.BasePath}}{{.Page}}/{{.StaticFileName}}"
               >{{.Title}}
+              <p class="htmx-indicator">loading...</p>
             </a>
           </h2>
-          {{- if .Description -}}
-            <div class="entry-description">{{.Description}}</div>
-          {{- end -}}
-          {{- if and .Date (ne (.Date.Format "01/02/2006") "01/01/0001") -}}
-            <p class="date">{{.Date.Format "01/02/2006"}}</p>
-          {{- end -}}
-        </div>
-      </li>
-    {{- end -}}
-  </ul>
-</div>
-{{- end -}}
-
-{{- define "entriesStaticHTML" -}}
-<div class="entries-list">
-  <ul>
-    {{- range .Entries -}}
-      <li class="entry-item">
-        <div class="entry-data">
-          <p>
-            <a
-              href="{{$.BasePath}}/{{.Page}}/{{.StaticFileName}}"
-              >{{.Title}}
-            </a>
-          </p>
           {{- if .Description -}}
             <div class="entry-description">{{.Description}}</div>
           {{- end -}}

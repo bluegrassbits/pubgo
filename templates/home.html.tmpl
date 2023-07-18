@@ -31,11 +31,7 @@
 
             {{- if and .Collection .Entries -}}
               {{- if .Entries -}}
-                {{- if eq .Mode "serve" -}}
                   {{- template "entriesHTML" . -}}
-                {{- else -}}
-                  {{- template "entriesStaticHTML" . -}}
-                {{- end -}}
               {{- end -}}
             {{- end -}}
 
