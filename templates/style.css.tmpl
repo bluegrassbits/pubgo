@@ -7,6 +7,13 @@
   --font-family: {{ .FontFamily }};
 }
 
+[data-theme="dark"] {
+  --background-color: {{ .TextColor }};
+  --text-color: {{ .BackgroundColor }};
+  --main-color: {{ .AccentColor }};
+  --accent-color: {{ .MainColor }};
+}
+
 * {
   margin: 0;
   padding: 0;

@@ -3,6 +3,10 @@
   <div>{{ .Site.FooterContent }}</div>
 
   <p>Powered by PubGo</p>
+  <div class="theme-switch">
+    <input type="checkbox" id="switch" name="theme" />
+    <label for="switch">&#9965;</label>
+  </div>
 </footer>
 <style>
 
@@ -13,4 +17,30 @@ footer {
   flex-direction: column;
 }
 </style>
+<script>
+const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+
+if (currentTheme) {
+    document.documentElement.setAttribute('data-theme', currentTheme);
+
+    if (currentTheme === 'dark') {
+        toggleSwitch.checked = true;
+    }
+}
+
+function switchTheme(e) {
+    if (e.target.checked) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark'); //this will be set to dark
+    }
+    else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light'); //this will be set to light
+    }
+}
+
+toggleSwitch.addEventListener('change', switchTheme, false);
+
+</script>
 {{end}}
