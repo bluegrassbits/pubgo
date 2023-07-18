@@ -1,7 +1,7 @@
-#header-logo {
-  margin-right: 2em;
+.logo img {
+  filter: invert(100%);
 }
 
-p img {
-  max-width: 100%;
+.hero-image {
+  filter: invert(1);
 }

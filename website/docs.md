@@ -4,7 +4,7 @@ include_toc: true
 ---
 
 <br/>
-# PubGo Documentation
+# Documentation
 
 Welcome to the PubGo documentation. This section provides comprehensive
 information on how to install, configure, and use PubGo for your content

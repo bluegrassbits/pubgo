@@ -2,7 +2,7 @@
 <header>
   <nav>
     <div id="header-logo">
-      <a href="{{.BasePath}}/">
+      <a class="logo" href="{{.BasePath}}/">
         {{- if .Site.Logo -}}
         <img
           width="{{ .Site.LogoWidth }}"
@@ -10,8 +10,12 @@
           src="{{.BasePath}}{{ .Site.Logo }}"
           alt="{{ .Site.Name }}"
         />
-        {{- else -}}
-        <h2>{{ .Site.Name }}</h2>
+        {{- end -}}
+        {{- if .Site.Logo -}}
+          <h2>{{ .Site.LogoText }}</h2>
+        {{- end -}}
+        {{- if and (not .Site.Logo) (not .Site.LogoText) -}}
+          <h2>{{ .Site.LogoText }}</h2>
         {{- end -}}
       </a>
     </div>

@@ -18,6 +18,7 @@ type Theme struct {
 type Site struct {
 	Name          string `yaml:"name"`
 	Logo          string `yaml:"logo"`
+	LogoText      string `yaml:"logo_text"`
 	LogoWidth     string `yaml:"logo_width"`
 	LogoHeight    string `yaml:"logo_height"`
 	Pages         Pages  `yaml:"pages"`
