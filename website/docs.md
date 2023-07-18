@@ -144,17 +144,17 @@ create it on startup.
 
 | Option                      | type       | Description                                                                                                    | Default |
 | --------------------------- | ---------- | -------------------------------------------------------------------------------------------------------------- | ------- |
-| **config_dir**              | string     | path to user supplied data                                                                                     | "."     |
+| **content_dir**              | string     | path to user supplied data                                                                                     | "."     |
 | **port**                    | string/int | listening port for server                                                                                      | 8080    |
 | **site**                    | string     | site specific nested config                                                                                    | ~N/A~   |
 | **site**>**name**           | string     | site name, used for header and title                                                                           | PubGo   |
-| **site**>**logo**           | string     | path to logo image. used for header if present. path is relative to `config_dir`. should start with `/static/` |         |
+| **site**>**logo**           | string     | path to logo image. used for header if present. path is relative to `content_dir`. should start with `/static/` |         |
 | **site**>**logo_width**     | string     | width of _logo_ image in header                                                                                | "32px"  |
 | **site**>**logo_height**    | string     | height of _logo_ image in header                                                                               |         |
 | **site**>**title**          | string     | tagline appended to site name in main page title                                                               |         |
 | **site**>**footer_content** | string     | text of footer                                                                                                 |         |
-| **site**>**favicon**        | string     | path to favicon image. used if present. path is relative to `config_dir`. should start with `/static/`         |         |
-| **site**>**stylesheet**     | string     | path to favicon image. used if present. path is relative to `config_dir`. should start with `/static/`         |         |
+| **site**>**favicon**        | string     | path to favicon image. used if present. path is relative to `content_dir`. should start with `/static/`         |         |
+| **site**>**stylesheet**     | string     | path to favicon image. used if present. path is relative to `content_dir`. should start with `/static/`         |         |
 
 ### Site config breakdown
 
