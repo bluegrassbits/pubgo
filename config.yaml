@@ -41,7 +41,7 @@ site:
       collection: true
       hero:
         content: "News"
-        background_image: "/static/geometry.svg"
+        background_image: "/static/inspiration-geometry.png"
         background: "#515e15"
   theme:
     background_color: "#eeeeee"
