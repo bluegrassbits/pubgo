@@ -34,15 +34,31 @@ If you'd like to start from scratch:
 
 ```bash
 mkdir new_project
-cp pubgo new_project/
-# or
-go build -o new_project/
-cd new_project
-./pubgo
+./pubgo -content_dir ./new_project -config ./new_project/config.yaml
 ```
 
-This will bootstrap the current directory with a boilerplate config file,
+This will bootstrap the `new_project` directory with a boilerplate config file,
 static content directory, and a `home.md`.
+
+The result is going to be a very plain starter. To add some styling quickly
+you can copy `website/static/css/custom.css` from this repo into the static
+directory of your newly created project and reference it in your `config.yaml`.
+
+You could also reference a remote stylesheet.
+
+**bash**
+```bash
+cp website/static/css/custom.css new_project/static/
+```
+
+**config.yaml**
+```yaml
+site:
+    stylesheet: "/static/custom.css"
+# or
+site:
+    stylesheet: "https://unpkg.com/missing.css@1.0.9/dist/missing.min.css"
+```
 
 ### Docker
 
@@ -125,13 +141,14 @@ site:
                 image: ""
                 background_image: ""
     theme:
+        sytnax_highlight: false
         background_color: "#eeeeee"
         text_color: "#020202"
         main_color: "#020202"
         accent_color: "#020202"
         font_family: monospace
     title: ""
-    footer_content: Powered by PubGo (https://pubgo.org) - CopyRight © 2019 My Site
+    footer_content: CopyRight © 2019 My Site
     favicon: ""
     stylesheet: ""
 ```
