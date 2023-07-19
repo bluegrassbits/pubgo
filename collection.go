@@ -122,7 +122,7 @@ func loadEntryBody(page config.Page, entry content.Entry) string {
 	}
 
 	_, md, _ = content.ParseEntry(md)
-	renderer, p := newCustomizedRender(entry.IncludeToc)
+	renderer, p := newCustomizedRender(entry.IncludeToc, cfg.Site.Theme.SyntaxHighlight)
 
 	mdString := string(md)
 	html := markdown.ToHTML([]byte(mdString), p, renderer)

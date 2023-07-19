@@ -13,6 +13,7 @@ type Theme struct {
 	MainColor       string `yaml:"main_color"`
 	AccentColor     string `yaml:"accent_color"`
 	FontFamily      string `yaml:"font_family"`
+	SyntaxHighlight bool   `yaml:"syntax_highlight"`
 }
 
 type Site struct {
@@ -88,6 +89,7 @@ func NewConfig() Config {
 				MainColor:       "#020202",
 				AccentColor:     "#020202",
 				FontFamily:      "monospace",
+				SyntaxHighlight: false,
 			},
 		},
 	}

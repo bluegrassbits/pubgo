@@ -35,7 +35,7 @@ func buildNonCollectionPage(page config.Page) {
 		}
 	}
 
-	renderer, p := newCustomizedRender(entry.IncludeToc)
+	renderer, p := newCustomizedRender(entry.IncludeToc, cfg.Site.Theme.SyntaxHighlight)
 
 	entry.Body = template.HTML(markdown.ToHTML(md, p, renderer))
 	cont := content.Content{

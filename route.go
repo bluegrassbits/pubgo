@@ -189,7 +189,7 @@ func renderSinglePage(w http.ResponseWriter, requestPath string, filePath string
 		}
 	}
 
-	renderer, p := newCustomizedRender(entry.IncludeToc)
+	renderer, p := newCustomizedRender(entry.IncludeToc, cfg.Site.Theme.SyntaxHighlight)
 	entry.Body = template.HTML(markdown.ToHTML(md, p, renderer))
 	cont := content.Content{
 		Site:        cfg.Site,
@@ -236,7 +236,7 @@ func renderEntryPage(w http.ResponseWriter, r *http.Request, filePath string) {
 		title = cfg.Site.Name + " ~ " + page.Name
 	}
 
-	renderer, p := newCustomizedRender(entry.IncludeToc)
+	renderer, p := newCustomizedRender(entry.IncludeToc, cfg.Site.Theme.SyntaxHighlight)
 	entry.Body = template.HTML(markdown.ToHTML(md, p, renderer))
 	cont := content.Content{
 		Site:        cfg.Site,

@@ -44,6 +44,7 @@ site:
         background_image: "/static/inspiration-geometry.png"
         background: "#515e15"
   theme:
+    syntax_highlight: true
     background_color: "#eeeeee"
     text_color: "#020202"
     main_color: "#515e15"
