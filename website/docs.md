@@ -159,17 +159,17 @@ create it on startup.
 
 ### Main config breakdown
 
-| Option                      | type       | Description                                                                                                    | Default |
-| --------------------------- | ---------- | -------------------------------------------------------------------------------------------------------------- | ------- |
-| **content_dir**              | string     | path to user supplied data                                                                                     | "."     |
-| **port**                    | string/int | listening port for server                                                                                      | 8080    |
-| **site**                    | string     | site specific nested config                                                                                    | ~N/A~   |
-| **site**>**name**           | string     | site name, used for header and title                                                                           | PubGo   |
+| Option                      | type       | Description                                                                                                     | Default |
+| --------------------------- | ---------- | --------------------------------------------------------------------------------------------------------------- | ------- |
+| **content_dir**             | string     | path to user supplied data                                                                                      | "."     |
+| **port**                    | string/int | listening port for server                                                                                       | 8080    |
+| **site**                    | string     | site specific nested config                                                                                     | ~N/A~   |
+| **site**>**name**           | string     | site name, used for header and title                                                                            | PubGo   |
 | **site**>**logo**           | string     | path to logo image. used for header if present. path is relative to `content_dir`. should start with `/static/` |         |
-| **site**>**logo_width**     | string     | width of _logo_ image in header                                                                                | "32px"  |
-| **site**>**logo_height**    | string     | height of _logo_ image in header                                                                               |         |
-| **site**>**title**          | string     | tagline appended to site name in main page title                                                               |         |
-| **site**>**footer_content** | string     | text of footer                                                                                                 |         |
+| **site**>**logo_width**     | string     | width of _logo_ image in header                                                                                 | "32px"  |
+| **site**>**logo_height**    | string     | height of _logo_ image in header                                                                                |         |
+| **site**>**title**          | string     | tagline appended to site name in main page title                                                                |         |
+| **site**>**footer_content** | string     | text of footer                                                                                                  |         |
 | **site**>**favicon**        | string     | path to favicon image. used if present. path is relative to `content_dir`. should start with `/static/`         |         |
 | **site**>**stylesheet**     | string     | path to favicon image. used if present. path is relative to `content_dir`. should start with `/static/`         |         |
 
@@ -254,13 +254,13 @@ This Section is WIP
 
 ## Todo
 
--   [ ] debug comments not showing for posts loaded dynamically with htmx
 -   [ ] improve server logging
 -   [ ] explore building flatfile commenting into pubgo
 -   [ ] improve table of content presentation
 -   [ ] evaluate duplication between markdown parser and Page type, refactor
 -   [ ] entries sorting and listing options, possibly pagination
 -   [ ] work on image based content publishing and presentation
+-   [x] debug comments not showing for posts loaded dynamically with htmx
 -   [x] cleanup default site theme
 -   [x] figure out how to overwrite templates with user defined templates
 -   [x] intial intro and docs pages

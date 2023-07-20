@@ -1,8 +1,15 @@
 {{- define "commentsHTML" -}}
-<div class="commentbox"></div>
-<script src="https://rantbrain.com/js/comment-min.js">
-</script>
-<script>
-  initComments();
-</script>
+  <div class="commentbox"></div>
+  <script>
+    (function(d, script) {
+        script = d.createElement('script');
+        script.type = 'text/javascript';
+        script.async = true;
+        script.onload = function(){
+          initComments();
+        };
+        script.src = 'https://rantbrain.com/js/comment-min.js';
+        d.getElementsByTagName('head')[0].appendChild(script);
+    }(document));
+  </script>
 {{- end -}}

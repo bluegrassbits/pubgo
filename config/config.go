@@ -14,6 +14,7 @@ type Theme struct {
 	AccentColor     string `yaml:"accent_color"`
 	FontFamily      string `yaml:"font_family"`
 	SyntaxHighlight bool   `yaml:"syntax_highlight"`
+	SyntaxTheme     string `yaml:"syntax_theme"`
 }
 
 type Site struct {
