@@ -12,8 +12,8 @@ site:
   title: Dynamic Content Publishing Framework in Go
   footer_content: "PUBGO © 2023"
   logo: "/static/icon-no-back.png"
-  logo_width: "32px"
-  logo_height: "32px"
+  logo_width: "1.4em"
+  logo_height: "1.4em"
   logo_text: "PUBGO"
   pages:
     0:
