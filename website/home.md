@@ -11,14 +11,15 @@ simple configuration file.
 ### Key Features
 
 -   **Customizability:** Update the styling, layout, and pages of your website
-    effortlessly using a configuration file. Customize your site's appearance with
-    custom CSS and Go templates.
+    effortlessly using a configuration file. Customize your site's appearance
+    with custom CSS and Go templates.
 -   **Embedded Webserver:** Unlike Hugo's primarily testing-focused webserver,
-    PubGo places a stronger emphasis on providing a robust hypermedia system. As the
-    framework matures, PubGo plans to leverage [htmx](https://htmx.org) to deliver dynamic user experiences.
--   **Simplified Content Delivery:** Adding new content to your website is as easy
-    as dropping a Markdown file into a directory. PubGo handles the conversion of
-    Markdown to HTML on the fly, making content management a breeze.
+    PubGo places a stronger emphasis on providing a robust hypermedia system.
+    As the framework matures, PubGo plans to leverage [htmx](https://htmx.org)
+    to deliver dynamic user experiences.
+-   **Simplified Content Delivery:** Adding new content to your website is as
+    easy as dropping a Markdown file into a directory. PubGo handles the
+    conversion of Markdown to HTML on the fly, making content management a breeze.
 
 ### Quick Start
 

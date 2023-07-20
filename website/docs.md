@@ -3,7 +3,6 @@ title: PubGo Documentation
 include_toc: true
 ---
 
-<br/>
 # Documentation
 
 Welcome to the PubGo documentation. This section provides comprehensive
@@ -144,11 +143,11 @@ site:
                 background_image: ""
     theme:
         sytnax_highlight: false
-        background_color: "#eeeeee"
-        text_color: "#020202"
-        main_color: "#020202"
-        accent_color: "#020202"
-        font_family: monospace
+        bg: "#eeeeee"
+        fg: "#020202"
+        accent: "#020202"
+        muted_accent: "#020202"
+        main_font: monospace
     title: ""
     footer_content: CopyRight © 2019 My Site
     favicon: ""
@@ -166,14 +165,14 @@ create it on startup.
 | **content_dir**             | string     | path to user supplied data                                                                                      | "."     |
 | **port**                    | string/int | listening port for server                                                                                       | 8080    |
 | **site**                    | string     | site specific nested config                                                                                     | ~N/A~   |
-| **site**>**name**           | string     | site name, used for header and title                                                                            | PubGo   |
-| **site**>**logo**           | string     | path to logo image. used for header if present. path is relative to `content_dir`. should start with `/static/` |         |
-| **site**>**logo_width**     | string     | width of _logo_ image in header                                                                                 | "32px"  |
-| **site**>**logo_height**    | string     | height of _logo_ image in header                                                                                |         |
-| **site**>**title**          | string     | tagline appended to site name in main page title                                                                |         |
-| **site**>**footer_content** | string     | text of footer                                                                                                  |         |
-| **site**>**favicon**        | string     | path to favicon image. used if present. path is relative to `content_dir`. should start with `/static/`         |         |
-| **site**>**stylesheet**     | string     | path to favicon image. used if present. path is relative to `content_dir`. should start with `/static/`         |         |
+| **site/name**           | string     | site name, used for header and title                                                                            | PubGo   |
+| **site/logo**           | string     | path to logo image. used for header if present. path is relative to `content_dir`. should start with `/static/` |         |
+| **site/logo_width**     | string     | width of _logo_ image in header                                                                                 | "32px"  |
+| **site/logo_height**    | string     | height of _logo_ image in header                                                                                |         |
+| **site/title**          | string     | tagline appended to site name in main page title                                                                |         |
+| **site/footer_content** | string     | text of footer                                                                                                  |         |
+| **site/favicon**        | string     | path to favicon image. used if present. path is relative to `content_dir`. should start with `/static/`         |         |
+| **site/stylesheet**     | string     | path to stylesheet. used if present. path is relative to `content_dir`. should start with `/static/`. can also reference a remote stylesheet         |         |
 
 ### Site config breakdown
 
@@ -184,7 +183,15 @@ For **site**>**theme**, please reference the example config above. Most of it
 should be self-explanatory. This page provides a way to do some basic
 customization.
 
-### Site > Pages config breakdown
+
+| Option | type | Description | Default |
+| ------ | ---- | ----------- | ------- |
+| **site/theme/syntax_highlight** | bool | whether or not to apply syntax highlighting on code blocks | false |
+| **site/theme/syntax_theme** | string | syntax highlighting theme | "dracula" |
+
+`Note:` see https://github.com/alecthomas/chroma/tree/master/styles for a list of usable themes
+
+### Site / Pages config breakdown
 
 This is were the pages of your site can be setup. **sites**>**pages** is
 a _key/value_ data structure. The _key_ here should be a numeric value. This
@@ -217,7 +224,6 @@ then the page is expected to display multiple entries of content.
 -   Collections pages will look for content in **\<content_dir\>/\<page_name\>/**
 -   Non-Collections pages expect **\<content_dir\>/\<page_name\>.md**
 
-<br/>
 
 #### Other page options
 
@@ -229,7 +235,7 @@ then the page is expected to display multiple entries of content.
 | **collection**    | bool   | whether or not this page contains multiple entries                    |
 | **hero**          | object | page hero configuration, see example above for options                |
 
-<br/>
+
 ## Usage Guide
 
 ### Creating Content:

@@ -93,6 +93,7 @@ func NewConfig() Config {
 				Accent:          "#020202",
 				MutedAccent:     "#020202",
 				SyntaxHighlight: false,
+				SyntaxTheme:     "dracula",
 			},
 		},
 	}

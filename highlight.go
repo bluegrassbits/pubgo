@@ -26,11 +26,7 @@ func htmlHighlight(w io.Writer, source, lang, defaultLang string) error {
 		log.Println("couldn't create html formatter")
 	}
 	var styleName string
-	if cfg.Site.Theme.SyntaxTheme == "" {
-		styleName = "dracula"
-	} else {
-		styleName = cfg.Site.Theme.SyntaxTheme
-	}
+	styleName = cfg.Site.Theme.SyntaxTheme
 
 	highlightStyle = styles.Get(styleName)
 	if highlightStyle == nil {
