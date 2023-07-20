@@ -1,6 +1,7 @@
 package main
 
 import (
+	"crypto/subtle"
 	"embed"
 	"flag"
 	"html/template"
@@ -31,11 +32,16 @@ func init() {
 	runMode = flag.String("mode", "serve", "Run mode: <serve> or <build> static site")
 	outputDir = flag.String("out", "./out", "Output directory for static site")
 	contentDir := flag.String("content_dir", "./website", "Content directory")
+	adminUser := flag.String("admin_user", "", "Admin username")
+	adminPass := flag.String("admin_pass", "", "Admin password")
 
 	flag.Parse()
 	cfg.ContentDir = *contentDir
 	cfg.OutputDir = *outputDir
 	cfg.Mode = *runMode
+	cfg.AdminUser = *adminUser
+	cfg.AdminPass = *adminPass
+
 	config.LoadConfig(*configFile, &cfg)
 
 	// If content directory doesn't exist, create it
@@ -257,7 +263,7 @@ func main() {
 			log.Println("Error creating file:", err)
 		}
 
-		err = templates.ExecuteTemplate(wr, "styleCSS", cfg.Site.Theme)
+		err = templates.ExecuteTemplate(wr, "styleCSS", cfg.Site)
 		if err != nil {
 			log.Println("Error executing template:", err)
 		}
@@ -331,4 +337,22 @@ func primePageEntry(page config.Page) {
 			panic(err)
 		}
 	}
+}
+
+// basic auth handler for admin pages
+func basicAuthHandler(w http.ResponseWriter, r *http.Request) bool {
+	if cfg.AdminUser == "" || cfg.AdminPass == "" {
+		return true
+	}
+
+	user, pass, ok := r.BasicAuth()
+
+	if !ok || subtle.ConstantTimeCompare([]byte(user), []byte(cfg.AdminUser)) != 1 || subtle.ConstantTimeCompare([]byte(pass), []byte(cfg.AdminPass)) != 1 {
+		w.Header().Set("WWW-Authenticate", `Basic realm="Restricted"`)
+		w.WriteHeader(http.StatusUnauthorized)
+		w.Write([]byte("401 Unauthorized\n"))
+		return false
+	}
+
+	return true
 }

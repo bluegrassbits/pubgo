@@ -1,16 +1,33 @@
 {{- define "styleCSS" -}}
 :root {
-  --background-color: {{ .BackgroundColor }};
-  --text-color: {{ .TextColor }};
-  --main-color: {{ .MainColor }};
-  --accent-color: {{ .AccentColor }};
-  --font-family: {{ .FontFamily }};
+  --bg: {{ .Theme.Bg }};
+  --fg: {{ .Theme.Fg }};
+  --muted-accent: {{ .Theme.MutedAccent }};
+  --accent: {{ .Theme.Accent }};
+{{- if .Theme.MainFont }}
+  --main-font: {{ .Theme.MainFont }};
+{{- end -}}
 }
 
 [data-theme="dark"] {
-  --background-color: {{ .TextColor }};
-  --text-color: {{ .BackgroundColor }};
-  --main-color: {{ .AccentColor }};
-  --accent-color: {{ .MainColor }};
+  --bg: {{ .Theme.Fg }};
+  --fg: {{ .Theme.Bg }};
+  --accent: {{ .Theme.Accent }};
+  --muted-accent: {{ .Theme.MutedAccent }};
+}
+
+.navbar img {
+  width: {{ .LogoWidth }};
+  height: {{ .LogoHeight }};
+}
+
+.navbar .logo {
+  display: flex;
+  gap: 0.2em;
+  align-items: center;
+}
+
+.navbar nav ul[role=list] {
+  align-items: center;
 }
 {{- end -}}

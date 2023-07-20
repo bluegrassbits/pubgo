@@ -32,6 +32,17 @@ var fourOhFour = `
 // setup main router
 func setupRouter() {
 	// a handler to process the request path and map it to a page
+	http.HandleFunc("/admin", func(w http.ResponseWriter, r *http.Request) {
+		logRequest(r)
+		authed := basicAuthHandler(w, r)
+		if !authed {
+			return
+		} else {
+			fmt.Fprintln(w, "Admin handler")
+			return
+		}
+	})
+
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		logRequest(r)
 		path := r.URL.Path

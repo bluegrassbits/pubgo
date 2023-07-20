@@ -47,11 +47,13 @@ directory of your newly created project and reference it in your `config.yaml`.
 You could also reference a remote stylesheet.
 
 **bash**
+
 ```bash
 cp website/static/css/custom.css new_project/static/
 ```
 
 **config.yaml**
+
 ```yaml
 site:
     stylesheet: "/static/custom.css"

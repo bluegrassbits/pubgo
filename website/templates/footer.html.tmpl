@@ -1,13 +1,15 @@
 {{define "footerHTML"}}
 <footer>
-  <div>{{ .Site.FooterContent }}</div>
-
-  <p>Powered by PubGo</p>
+  <p>{{ .Site.FooterContent }}</p>
+  <p>Powered by <a href="https://pugbgo.org">PubGo</a></p>
+{{/*
   <div class="theme-switch">
     <input type="checkbox" id="switch" name="theme" />
     <label for="switch">&#9965;</label>
   </div>
+*/}}
 </footer>
+{{/*
 <script>
 const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
 const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
@@ -34,4 +36,5 @@ function switchTheme(e) {
 toggleSwitch.addEventListener('change', switchTheme, false);
 
 </script>
+*/}}
 {{end}}

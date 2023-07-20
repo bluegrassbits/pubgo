@@ -26,22 +26,22 @@ To get started with PubGo, follow these steps:
 
 1. Clone the PubGo repository:
 
-    ```bash
-    git clone https://github.com/bluegrassbits/pubgo.git
-    cd pubgo
-    ```
+```bash
+git clone https://github.com/bluegrassbits/pubgo.git
+cd pubgo
+```
 
 2. Build the PubGo executable:
 
-    ```bash
-    go build
-    ```
+```bash
+go build
+```
 
 3. Run the PubGo server:
 
-    ```bash
-    ./pubgo
-    ```
+```bash
+./pubgo
+```
 
 By default, the PubGo server host this site locally at http://localhost:8889.
 You can customize the server configuration in the PubGo configuration file.

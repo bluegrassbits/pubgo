@@ -8,11 +8,12 @@ import (
 )
 
 type Theme struct {
-	BackgroundColor string `yaml:"background_color"`
-	TextColor       string `yaml:"text_color"`
-	MainColor       string `yaml:"main_color"`
-	AccentColor     string `yaml:"accent_color"`
-	FontFamily      string `yaml:"font_family"`
+	BackgroundColor string `yaml:"background"`
+	Fg              string `yaml:"text"`
+	Bg              string `yaml:"main"`
+	Accent          string `yaml:"accent"`
+	MutedAccent     string `yaml:"muted_accent"`
+	MainFont        string `yaml:"font_family"`
 	SyntaxHighlight bool   `yaml:"syntax_highlight"`
 	SyntaxTheme     string `yaml:"syntax_theme"`
 }
@@ -53,6 +54,8 @@ type Config struct {
 	ContentDir string `yaml:"content_dir"`
 	BaseURL    string `yaml:"base_url"`
 	OutputDir  string `yaml:"-"`
+	AdminUser  string `yaml:"admin_user"`
+	AdminPass  string `yaml:"admin_pass"`
 	Mode       string `yaml:"-"`
 	Port       int    `yaml:"port"`
 	Site       Site   `yaml:"site"`
@@ -85,11 +88,10 @@ func NewConfig() Config {
 				},
 			},
 			Theme: Theme{
-				BackgroundColor: "#eeeeee",
-				TextColor:       "#020202",
-				MainColor:       "#020202",
-				AccentColor:     "#020202",
-				FontFamily:      "monospace",
+				Bg:              "#f8fafb",
+				Fg:              "#020202",
+				Accent:          "#020202",
+				MutedAccent:     "#020202",
 				SyntaxHighlight: false,
 			},
 		},

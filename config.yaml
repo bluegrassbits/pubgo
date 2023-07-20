@@ -6,13 +6,15 @@ base_url: ""
 port: 8889
 site:
   # image paths are relative to content_dir
-  name: "PubGo"
+  name: "PUBGO"
   favicon: "/static/icon.png"
   stylesheet: "/static/css/custom.css"
   title: Dynamic Content Publishing Framework in Go
-  footer_content: "PubGo © 2023"
+  footer_content: "PUBGO © 2023"
   logo: "/static/icon-no-back.png"
-  logo_text: "pubgo"
+  logo_width: "32px"
+  logo_height: "32px"
+  logo_text: "PUBGO"
   pages:
     0:
       name: "home"
@@ -22,7 +24,6 @@ site:
       hero:
         image: "/static/logo.svg"
         background_image: "/static/inspiration-geometry.png"
-        background: "#eeeeee"
     1:
       name: "docs"
       path: "/docs"
@@ -34,7 +35,6 @@ site:
       hero:
         content: "Readings"
         background_image: "/static/inspiration-geometry.png"
-        background: "#4d1406"
     5:
       name: "news"
       path: "/news"
@@ -42,11 +42,13 @@ site:
       hero:
         content: "News"
         background_image: "/static/inspiration-geometry.png"
-        background: "#515e15"
   theme:
     syntax_highlight: true
-    background_color: "#eeeeee"
-    text_color: "#020202"
-    main_color: "#515e15"
-    accent_color: "#4d1406"
-    font_family: "-apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, sans-serif"
+    # see https://github.com/alecthomas/chroma/tree/master/styles for a list of
+    # styles
+    syntax_theme: "onedark"
+    bg: "#eeeeee"
+    fg: "#020202"
+    muted_accent: "#515e15"
+    accent: "#4d1406"
+    secondary_font: "-apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, sans-serif"

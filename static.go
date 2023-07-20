@@ -22,7 +22,7 @@ func serveCSSTemplate() {
 	log.Println("Serving CSS from templates")
 	http.HandleFunc("/css/style.css", func(wr http.ResponseWriter, req *http.Request) {
 		wr.Header().Set("Content-Type", "text/css")
-		err := templates.ExecuteTemplate(wr, "styleCSS", cfg.Site.Theme)
+		err := templates.ExecuteTemplate(wr, "styleCSS", cfg.Site)
 		if err != nil {
 			http.Error(wr, err.Error(), http.StatusInternalServerError)
 		}

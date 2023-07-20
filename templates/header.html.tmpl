@@ -1,34 +1,30 @@
 {{- define "headerHTML" -}}
-<header>
-  <div id="header-logo">
-    <a class="logo" href="{{.BasePath}}/">
-      {{- if .Site.Logo -}}
-      <img
-        width="{{ .Site.LogoWidth }}"
-        height="{{ .Site.LogoHeight }}"
-        src="{{.BasePath}}{{ .Site.Logo }}"
-        alt="{{ .Site.Name }}"
-      />
-      {{- end -}}
-      {{- if .Site.LogoText -}}
-        <h2>{{ .Site.LogoText }}</h2>
-      {{- else -}}
-        <h2>{{ .Site.Name }}</h2>
-      {{- end -}}
-    </a>
-  </div>
-  <div id="header-menu">
-    <nav>
-    {{- range .Site.Pages -}}
-      {{- if not .HideFromNav -}}
-        {{- if eq $.RequestPath .Path -}}
-          <a class="page active" href="{{$.BasePath}}{{ .Path }}">{{ .Name }}</a>
+<header class="navbar">
+  <nav aria-label="Site sections">
+    <ul role="list">
+      <li>
+        <a class="logo" href="{{.BasePath}}/">
+        {{- if .Site.Logo -}}
+          <img alt="{{.Site.Name}}" src="{{.Site.Logo}}">
+        {{- end -}}
+        {{- if .Site.LogoText -}}
+          <span class="logo-text">{{.Site.LogoText}}</span>
         {{- else -}}
-          <a class="page" href="{{$.BasePath}}{{ .Path }}">{{ .Name }}</a>
+          {{- if .Site.Name -}}
+            <span class="logo-text">{{.Site.Name}}</span>
+          {{- end -}}
+        {{- end -}}
+        </a>
+      {{- range .Site.Pages -}}
+        {{- if not .HideFromNav -}}
+          {{- if eq $.RequestPath .Path -}}
+            <li><a aria-current="page" class="page" href="{{$.BasePath}}{{ .Path }}">{{ .Name }}</a>
+          {{- else -}}
+            <li><a class="page" href="{{$.BasePath}}{{ .Path }}">{{ .Name }}</a>
+          {{- end -}}
         {{- end -}}
       {{- end -}}
-    {{- end -}}
-    </nav>
-  </div>
+    </ul>
+  </nav>
 </header>
 {{- end -}}
