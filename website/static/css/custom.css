@@ -1,3 +1,10 @@
+/* [data-theme="dark"] {
+  --bg: {{ .Theme.Fg }};
+  --fg: {{ .Theme.Bg }};
+  --accent: {{ .Theme.Accent }};
+  --muted-accent: {{ .Theme.MutedAccent }};
+} */
+
 pre {
   border-radius: 4px;
   padding: 1em;
