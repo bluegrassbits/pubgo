@@ -24,3 +24,11 @@ pre {
 .hero-image img, .navbar img {
   filter: invert(100%);
 }
+
+main {
+  max-inline-size: calc(1.5 *var(--eff-line-length));
+}
+
+.navbar:not(.expanded) > :first-child, .navbar:not(.expanded) nav > :first-child { margin-inline-start: 0; }
+
+.navbar:not(.expanded) >  :last-child, .navbar:not(.expanded) nav >  :last-child { margin-inline-end: 0; }

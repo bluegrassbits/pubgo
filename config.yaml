@@ -10,7 +10,7 @@ site:
   favicon: "/static/icon.png"
   stylesheet: "/static/css/custom.css"
   title: Dynamic Content Publishing Framework in Go
-  footer_content: "PUBGO © 2023"
+  footer_content: "PUBGO est. 2023"
   logo: "/static/icon-no-back.png"
   logo_width: "1.4em"
   logo_height: "1.4em"
