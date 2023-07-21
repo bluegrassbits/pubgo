@@ -8,7 +8,7 @@ site:
   # image paths are relative to content_dir
   name: "PUBGO"
   favicon: "/static/icon.png"
-    # stylesheet: "/static/css/custom.css"
+  stylesheet: "/static/css/custom.css"
   title: Dynamic Content Publishing Framework in Go
   footer_content: "PUBGO © 2023"
   logo: "/static/icon-no-back.png"
