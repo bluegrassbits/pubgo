@@ -2,6 +2,10 @@
 
 [https://github.com/bluegrassbits/pubgo](https://github.com/bluegrassbits/pubgo)
 
+PubGo is currently in a prototype state and should be considered experimental.
+Breaking changes will be frequent at this stage. With that being said, it is
+somewhat functional and can be used to generate small projects and tinkerings.
+
 PubGo is a lightweight and customizable content publishing framework written in
 Go. Inspired by the simplicity of Hugo, PubGo aims to simplify the process of
 generating static sites while offering the convenience of a live server approach.

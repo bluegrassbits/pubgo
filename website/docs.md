@@ -10,6 +10,12 @@ Welcome to the PubGo documentation. This section provides comprehensive
 information on how to install, configure, and use PubGo for your content
 publishing needs.
 
+<figure>
+PubGo is currently in a prototype state and should be considered experimental.
+Breaking changes will be frequent at this stage. With that being said, it is
+somewhat functional and can be used to generate small projects and tinkerings.
+</figure>
+
 ## Getting Started
 ### Basics
 
