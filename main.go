@@ -23,14 +23,11 @@ var entries = make(map[string][]content.Entry)
 var cfg = config.NewConfig()
 var templates *template.Template
 
-var runMode *string
-var outputDir *string
-
 func init() {
 	// Load config from YAML file
 	configFile := flag.String("config", "config.yaml", "Path to config file")
-	runMode = flag.String("mode", "serve", "Run mode: <serve> or <build> static site")
-	outputDir = flag.String("out", "./out", "Output directory for static site")
+	runMode := flag.String("mode", "serve", "Run mode: <serve> or <build> static site")
+	outputDir := flag.String("out", "./out", "Output directory for static site")
 	contentDir := flag.String("content_dir", "./website", "Content directory")
 	adminUser := flag.String("admin_user", "", "Admin username")
 	adminPass := flag.String("admin_pass", "", "Admin password")
@@ -111,47 +108,6 @@ func init() {
 	}
 }
 
-func loadCollectionEntries(page config.Page) {
-
-	log.Println("Loading entries...")
-	files, _ := ioutil.ReadDir(filepath.Join(cfg.ContentDir, page.Name))
-
-	for _, file := range files {
-		filename := file.Name()
-		if strings.HasSuffix(filename, ".md") {
-			data, err := os.ReadFile(filepath.Join(cfg.ContentDir, page.Name, filename))
-			if err != nil {
-				log.Println("Error reading entry file:", err)
-				panic(err)
-			}
-
-			entry := createEntry(page, page.Name, filename, data)
-			entries[page.Name] = append(entries[page.Name], entry)
-		}
-	}
-
-	log.Println("Found", len(files), "entries")
-	log.Println("Done loading entries")
-}
-
-func loadSingleEntry(page config.Page) {
-	// Get markdown file
-	data, err := os.ReadFile(filepath.Join(cfg.ContentDir, page.Name+".md"))
-
-	// if file doesn't exist, create it with default content
-	if os.IsNotExist(err) {
-		data = []byte("# " + page.Name + "\n\n" + page.Name + " content goes here")
-		err = os.WriteFile(filepath.Join(cfg.ContentDir, page.Name+".md"), data, 0644)
-		if err != nil {
-			log.Println("Error creating entry file:", err)
-			panic(err)
-		}
-	}
-
-	entry := createEntry(page, "", page.Name+".md", data)
-	entries[page.Name] = append(entries[page.Name], entry)
-}
-
 func createEntry(page config.Page, subDir, filename string, data []byte) content.Entry {
 
 	var filePath string
@@ -226,13 +182,7 @@ func main() {
 		}
 
 		// make outputdir/css if it doesn't exist
-		if _, err := os.Stat(filepath.Join(cfg.OutputDir, "css")); os.IsNotExist(err) {
-			err = os.Mkdir(filepath.Join(cfg.OutputDir, "css"), 0755)
-			if err != nil {
-				log.Println("Error creating css directory:", err)
-				panic(err)
-			}
-		}
+		primeDirectory(filepath.Join(cfg.OutputDir, "css"))
 
 		// render css from template and write to outputdir/css/style.css
 		wr, err := os.Create(cfg.OutputDir + "/css" + "/style.css")
@@ -283,21 +233,6 @@ func buildPages() {
 	// Set up handlers for collection pages
 	for _, page := range collectionPages {
 		buildCollectionPage(page)
-	}
-}
-
-func primePageEntry(page config.Page) {
-	// Get markdown file
-	data, err := os.ReadFile(filepath.Join(cfg.ContentDir, page.Name+".md"))
-
-	// if file doesn't exist, create it with default content
-	if os.IsNotExist(err) {
-		data = []byte("### " + page.Name + ".md\n\n" + page.Name + " content goes here. edit this file to change the page content.")
-		err = os.WriteFile(filepath.Join(cfg.ContentDir, page.Name+".md"), data, 0644)
-		if err != nil {
-			log.Println("Error creating entry file:", err)
-			panic(err)
-		}
 	}
 }
 

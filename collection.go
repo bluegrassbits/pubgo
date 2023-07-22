@@ -2,8 +2,11 @@ package main
 
 import (
 	"html/template"
+	"io/ioutil"
 	"log"
 	"os"
+	"path/filepath"
+	"strings"
 
 	"pubgo/config"
 	"pubgo/content"
@@ -18,7 +21,7 @@ func buildCollectionPage(page config.Page) {
 	ents := entries[page.Name]
 	cont := createContent(page, ents)
 
-	createOutputDirectory(page)
+	primeDirectory(filepath.Join(cfg.OutputDir, page.Path))
 
 	wr, err := os.Create(cfg.OutputDir + page.Path + "/index.html")
 	if err != nil {
@@ -57,7 +60,7 @@ func buildEntryPages(page config.Page) {
 			Entry:       entry,
 		}
 
-		createOutputDirectory(page)
+		primeDirectory(filepath.Join(cfg.OutputDir, page.Path))
 
 		wr, err := os.Create(cfg.OutputDir + page.Path + "/" + entry.StaticFileName())
 		if err != nil {
@@ -130,13 +133,25 @@ func loadEntryBody(page config.Page, entry content.Entry) string {
 	return string(html)
 }
 
-// createOutputDirectory creates the output directory for a page if it doesn't exist.
-func createOutputDirectory(page config.Page) {
-	if _, err := os.Stat(cfg.OutputDir + page.Path); os.IsNotExist(err) {
-		err = os.MkdirAll(cfg.OutputDir+page.Path, 0755)
-		if err != nil {
-			log.Println("Error creating output directory:", err)
-			panic(err)
+func loadCollectionEntries(page config.Page) {
+
+	log.Println("Loading entries...")
+	files, _ := ioutil.ReadDir(filepath.Join(cfg.ContentDir, page.Name))
+
+	for _, file := range files {
+		filename := file.Name()
+		if strings.HasSuffix(filename, ".md") {
+			data, err := os.ReadFile(filepath.Join(cfg.ContentDir, page.Name, filename))
+			if err != nil {
+				log.Println("Error reading entry file:", err)
+				panic(err)
+			}
+
+			entry := createEntry(page, page.Name, filename, data)
+			entries[page.Name] = append(entries[page.Name], entry)
 		}
 	}
+
+	log.Println("Found", len(files), "entries")
+	log.Println("Done loading entries")
 }

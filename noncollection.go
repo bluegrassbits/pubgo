@@ -4,6 +4,7 @@ import (
 	"html/template"
 	"log"
 	"os"
+	"path/filepath"
 
 	"pubgo/config"
 	"pubgo/content"
@@ -49,14 +50,7 @@ func buildNonCollectionPage(page config.Page) {
 		Entry:       entry,
 	}
 
-	// if output dir/path doesn't exist, create it
-	if _, err := os.Stat(cfg.OutputDir + page.Path); os.IsNotExist(err) {
-		err = os.MkdirAll(cfg.OutputDir+page.Path, 0755)
-		if err != nil {
-			log.Println("Error creating output directory:", err)
-			panic(err)
-		}
-	}
+	primeDirectory(filepath.Join(cfg.OutputDir, page.Path))
 
 	// file writer for index.html
 	wr, err := os.Create(cfg.OutputDir + page.Path + "/index.html")
@@ -68,4 +62,22 @@ func buildNonCollectionPage(page config.Page) {
 	if err != nil {
 		log.Println("Error executing template:", err)
 	}
+}
+
+func loadSingleEntry(page config.Page) {
+	// Get markdown file
+	data, err := os.ReadFile(filepath.Join(cfg.ContentDir, page.Name+".md"))
+
+	// if file doesn't exist, create it with default content
+	if os.IsNotExist(err) {
+		data = []byte("# " + page.Name + "\n\n" + page.Name + " content goes here")
+		err = os.WriteFile(filepath.Join(cfg.ContentDir, page.Name+".md"), data, 0644)
+		if err != nil {
+			log.Println("Error creating entry file:", err)
+			panic(err)
+		}
+	}
+
+	entry := createEntry(page, "", page.Name+".md", data)
+	entries[page.Name] = append(entries[page.Name], entry)
 }

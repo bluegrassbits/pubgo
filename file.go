@@ -4,15 +4,31 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"pubgo/config"
 	"strings"
 )
 
 func primeDirectory(dir string) {
-	// If content directory doesn't exist, create it
+	// If directory doesn't exist, create it
 	if _, err := os.Stat(dir); os.IsNotExist(err) {
 		err = os.Mkdir(dir, 0755)
 		if err != nil {
 			log.Println("Error creating content directory:", err)
+			panic(err)
+		}
+	}
+}
+
+func primePageEntry(page config.Page) {
+	// Get markdown file
+	data, err := os.ReadFile(filepath.Join(cfg.ContentDir, page.Name+".md"))
+
+	// if file doesn't exist, create it with default content
+	if os.IsNotExist(err) {
+		data = []byte("### " + page.Name + ".md\n\n" + page.Name + " content goes here. edit this file to change the page content.")
+		err = os.WriteFile(filepath.Join(cfg.ContentDir, page.Name+".md"), data, 0644)
+		if err != nil {
+			log.Println("Error creating entry file:", err)
 			panic(err)
 		}
 	}
