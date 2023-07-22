@@ -1,6 +1,6 @@
 {{- define "entriesHTML" -}}
 <div class="entries-list">
-  <ul>
+  <ul role="list">
     {{- range .Entries -}}
       <li class="entry-item">
         <article>
@@ -21,7 +21,6 @@
           {{- end -}}
         </article>
       </li>
-      <hr>
     {{- end -}}
   </ul>
 </div>

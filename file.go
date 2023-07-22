@@ -7,6 +7,17 @@ import (
 	"strings"
 )
 
+func primeDirectory(dir string) {
+	// If content directory doesn't exist, create it
+	if _, err := os.Stat(dir); os.IsNotExist(err) {
+		err = os.Mkdir(dir, 0755)
+		if err != nil {
+			log.Println("Error creating content directory:", err)
+			panic(err)
+		}
+	}
+}
+
 // walkAndCopyFiles copies files from src to dest directory
 func walkAndCopyFiles(src string, dest string) error {
 	err := filepath.Walk(filepath.Join(src, "static"), func(path string, info os.FileInfo, err error) error {

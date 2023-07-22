@@ -43,19 +43,11 @@ func init() {
 	cfg.AdminPass = *adminPass
 
 	config.LoadConfig(*configFile, &cfg)
-
-	// If content directory doesn't exist, create it
-	if _, err := os.Stat(cfg.ContentDir); os.IsNotExist(err) {
-		err = os.Mkdir(cfg.ContentDir, 0755)
-		if err != nil {
-			log.Println("Error creating content directory:", err)
-			panic(err)
-		}
-	}
+	primeDirectory(cfg.ContentDir)
 
 	for _, page := range cfg.Site.Pages {
 		if page.Collection {
-			primeCollectionDirs(page)
+			primeDirectory(filepath.Join(cfg.ContentDir, page.Name))
 		} else {
 			primePageEntry(page)
 		}
@@ -63,13 +55,7 @@ func init() {
 
 	// if runmode is build and output directory doesn't exist, create it
 	if cfg.Mode == "build" {
-		if _, err := os.Stat(cfg.OutputDir); os.IsNotExist(err) {
-			err = os.Mkdir(cfg.OutputDir, 0755)
-			if err != nil {
-				log.Println("Error creating output directory:", err)
-				panic(err)
-			}
-		}
+		primeDirectory(cfg.OutputDir)
 
 		// Load entries
 		for _, page := range cfg.Site.Pages {
@@ -83,7 +69,7 @@ func init() {
 		printEntries()
 	}
 
-	// Load templates
+	// Load default templates
 	var err error
 	templates, err = template.New("").ParseFS(templateFiles, "templates/*.tmpl")
 
@@ -94,18 +80,9 @@ func init() {
 
 	// Load custom templates from ContentDir/templates to override default templates
 	customTemplatesDir := filepath.Join(cfg.ContentDir, "templates")
-
-	// If custom templates directory doesnt exist, create it
-	if _, err := os.Stat(customTemplatesDir); os.IsNotExist(err) {
-		err = os.Mkdir(customTemplatesDir, 0755)
-		if err != nil {
-			log.Println("Error creating custom templates directory:", err)
-			panic(err)
-		}
-	}
+	primeDirectory(customTemplatesDir)
 
 	if _, err := os.Stat(customTemplatesDir); err == nil {
-		// Log if custom templates directory exists
 		log.Println("Loading custom templates from", customTemplatesDir)
 
 		// Print *.html files in custom templates directory
@@ -306,21 +283,6 @@ func buildPages() {
 	// Set up handlers for collection pages
 	for _, page := range collectionPages {
 		buildCollectionPage(page)
-	}
-}
-
-func primeCollectionDirs(page config.Page) {
-	_, err := ioutil.ReadDir(filepath.Join(cfg.ContentDir, page.Name))
-	// If directory doesn't exist, create it
-	if os.IsNotExist(err) {
-		err = os.Mkdir(filepath.Join(cfg.ContentDir, page.Name), 0755)
-		if err != nil {
-			log.Println("Error creating page directory:", err)
-			panic(err)
-		}
-	} else if err != nil {
-		log.Println("Error reading page directory:", err)
-		panic(err)
 	}
 }
 
