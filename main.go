@@ -66,12 +66,10 @@ func init() {
 		printEntries()
 	}
 
-	// Load default templates
 	var err error
 	templates, err = template.New("").ParseFS(templateFiles, "templates/*.tmpl")
 
 	if err != nil {
-		// If error loading templates, log it
 		log.Println("Error loading templates:", err)
 	}
 
@@ -109,7 +107,6 @@ func init() {
 }
 
 func createEntry(page config.Page, subDir, filename string, data []byte) content.Entry {
-
 	var filePath string
 
 	if subDir != "" {
@@ -147,12 +144,10 @@ func printEntries() {
 	}
 }
 
-// log request
 func logRequest(req *http.Request) {
 	log.Printf("%s\t%s\t%s\t%s", req.Method, req.URL.Path, req.RemoteAddr, req.UserAgent())
 }
 
-// loadEntries
 func loadEntries() {
 	// Clear entries
 	entries = make(map[string][]content.Entry, 0)
@@ -166,7 +161,6 @@ func loadEntries() {
 		}
 	}
 
-	// Print loaded entries
 	printEntries()
 }
 
@@ -212,7 +206,6 @@ func main() {
 	}
 }
 
-// buildPages builds the static pages
 func buildPages() {
 	nonCollectionPages := make(config.Pages)
 	collectionPages := make(config.Pages)
@@ -225,18 +218,15 @@ func buildPages() {
 		}
 	}
 
-	// Set up handlers for non-collection pages
 	for _, page := range nonCollectionPages {
 		buildNonCollectionPage(page)
 	}
 
-	// Set up handlers for collection pages
 	for _, page := range collectionPages {
 		buildCollectionPage(page)
 	}
 }
 
-// basic auth handler for admin pages
 func basicAuthHandler(w http.ResponseWriter, r *http.Request) bool {
 	if cfg.AdminUser == "" || cfg.AdminPass == "" {
 		return true

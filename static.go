@@ -8,12 +8,12 @@ import (
 
 func serveStaticFiles() {
 	log.Println("Serving static files from", cfg.ContentDir+"/static")
+
 	// check if static dir exists. if not, create it
 	if _, err := os.Stat(cfg.ContentDir + "/static"); os.IsNotExist(err) {
 		os.Mkdir(cfg.ContentDir+"/static", 0755)
 	}
 	// serve static files
-
 	fs := http.FileServer(http.Dir(cfg.ContentDir + "/static"))
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
 }

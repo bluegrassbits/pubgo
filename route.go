@@ -46,7 +46,6 @@ func setupRouter() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		logRequest(r)
 		path := r.URL.Path
-		// generate filepath from path
 		route, err := parseRoute(path)
 
 		log.Printf("Route: %s, Error: %s\n", route, err)
@@ -67,14 +66,10 @@ func setupRouter() {
 			}
 		} else {
 			renderEntriesPage(w, r, route)
-			//fmt.Fprintln(w, "Collection handler")
 			return
 		}
 	})
 }
-
-// isSinglePage determines if the route is a single page or an entry in a collection
-// it does this by checking if there is a subdirectory in the path relative to the content directory
 
 func isSinglePage(path string) bool {
 	contentDir := cfg.ContentDir
@@ -98,7 +93,6 @@ func isSinglePage(path string) bool {
 	return true
 }
 
-// isDir returns true if the path is a directory
 func isDir(path string) bool {
 	if fi, err := os.Stat(path); err == nil {
 		return fi.IsDir()

@@ -1,7 +1,7 @@
 {{- define "entriesHTML" -}}
 <div class="entries-list">
   <ul role="list">
-    {{- range .Entries -}}
+    {{- range .Entries.SortByDate -}}
       <li class="entry-item">
         <article>
           <h2 hx-boost="true" class="title">

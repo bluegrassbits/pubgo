@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"errors"
 	"html/template"
+	"sort"
 	"strings"
 	"time"
 
@@ -33,6 +34,18 @@ func (e Entry) StaticFileName() string {
 
 // Entries is a slice of Entry
 type Entries []Entry
+
+// sort entries by date
+func (e Entries) SortByDate() Entries {
+	var entries Entries
+	for _, entry := range e {
+		entries = append(entries, entry)
+	}
+	sort.Slice(entries, func(i, j int) bool {
+		return entries[i].Date.UnixMicro() < entries[j].Date.UnixMicro()
+	})
+	return entries
+}
 
 // Page is the data passed to the template
 type Content struct {
